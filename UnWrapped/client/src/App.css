@@ -19,3 +19,52 @@ header {
   border-radius: 20px;
   border: none;
 }
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+  width: 450px;
+  margin: 26px auto;
+}
+
+.formContainer input, textarea {
+  width: 360px;
+  height: 20px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+hr {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.cigarListContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cigarList p {
+  text-align: start;
+  width: 75%;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.singleCigar {
+  width: 400px;
+  padding: 26px;
+}
+
+.cigarImg {
+  width: 260px;
+}
+
+.displayBtnConntainer {
+  width: 200px;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-evenly;
+}

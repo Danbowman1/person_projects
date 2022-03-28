@@ -16,6 +16,17 @@ const CigarSchema = new mongoose.Schema({
         type: String,
         required: [true, "An image of your cigar is required!"]
     },
+    rating: {
+        type: Number,
+        enum: [
+            1,
+            2,
+            3,
+            4,
+            5
+        ],
+        required: [true, "You must rate the cigar!"]
+    }
     
 
 }, {timestamps: true})

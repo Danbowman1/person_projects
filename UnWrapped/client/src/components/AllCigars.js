@@ -9,15 +9,18 @@ const AllCigars = (props) => {
     const navigate = useNavigate()
 
     return (
-        <div>
+        <div className='cigarListContainer'>
             {
                 cigarList.map((cigar, index)=>(
-                    <div key={index}>
+                    <div key={index} className="singleCigar">
                         <h2>{cigar.cigarName}</h2>
+                        <img src={cigar.image} alt="Cigar" className='cigarImg' />
                         <p>{cigar.description}</p>
-                        <img src={cigar.image} alt="Cigar" />
+                        <p>Rating:{cigar.rating}/5</p>
+                        <div className='displayBtnConntainer'>
                         <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
                         <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
+                        </div>
                     </div>
                 ))
             }

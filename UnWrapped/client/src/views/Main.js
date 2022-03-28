@@ -7,12 +7,14 @@ import Header from '../components/Header'
 const Main = () => {
 
     const [cigarList, setCigarList] = useState([])
+    
 
     useEffect(()=>{
         axios.get("http://localhost:8000/api/cigars")
             .then(res=>{
                 console.log(res.data)
                 setCigarList(res.data)
+                
             })
             .catch(err=>{
                 console.log(err)
@@ -46,11 +48,13 @@ const Main = () => {
     return (
         <div>
             <Header />
+            
             <CigarForm 
                 onSubmitProp={createCigar}
                 initialCigarName=''
                 initialDescription=''
-                initalImage=''
+                initialImage=''
+                initialRating=''
             />
             <hr/>
             <AllCigars 

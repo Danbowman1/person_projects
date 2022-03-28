@@ -3,7 +3,7 @@ const Cigar = require("../models/cigar.model")
 module.exports = {
 
     findAllCigars: (req, res)=>{
-        Cigar.find()
+        Cigar.find({}).sort({createdAt:-1})
             .then((allCigars)=>{
                 console.log(allCigars)
                 res.json(allCigars)

@@ -1,5 +1,6 @@
 const CigarController = require("../controllers/cigar.controller")
 
+
 module.exports = (app) => {
 
     app.post('/api/cigars', CigarController.createNewCigar)
