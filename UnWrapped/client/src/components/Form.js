@@ -45,7 +45,7 @@ const CigarForm = (props) => {
                         />
                     </div>
                 </div>
-                <div>
+                <div className='description'>
                     <label>Description</label>
                     <textarea 
                     value={description}

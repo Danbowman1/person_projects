@@ -9,7 +9,7 @@ const AllCigars = (props) => {
     const navigate = useNavigate()
 
     return (
-        <div className='cigarListContainer'>
+        <div>
             {
                 cigarList.filter((val)=>{
                     if(searchTerm === ''){
@@ -21,7 +21,7 @@ const AllCigars = (props) => {
                 .map((cigar, index)=>(
                     <div key={index} className="singleCigar">
                         <h2>{cigar.cigarName}</h2>
-                        <h3>{cigar.brand}</h3>
+                        <p className='cigarBrand'>{cigar.brand}</p>
                         <img src={cigar.image} alt="Cigar" className='cigarImg' />
                         <p>{cigar.description}</p>
                         <p>Rating: {cigar.rating}/5</p>

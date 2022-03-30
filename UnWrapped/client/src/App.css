@@ -3,8 +3,13 @@
   height: 100vh;
 }
 
+
+
 .mainContainer {
   display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 50%;
 }
 
 /* Navbar */
@@ -30,27 +35,20 @@ header {
   border: none;
 }
 
-
-
-/* Sidebar */
-
-.sidebar {
-  height: 800px;
-  width: 10%;
-  min-width: 100px;
-  background-color: aqua;
-}
-
 /* Form Styling */
+
+form {
+  width: 100%;
+}
 
 .formContainer {
   display: flex;
-  width: 450px;
-  margin: 40px 10%;
+  width: 100%;
+  min-width: 260px;
+  margin: 40px 0;
 }
 
 .formContainer input {
-  width: 100%;
   height: 20px;
   margin-bottom: 10px;
   display: flex;
@@ -58,9 +56,14 @@ header {
   border: 1px solid lightgray;
 }
 
+.description {
+  display: flex;
+  flex-direction: column;
+}
+
 .formContainer textarea {
-  width: 100%;
-  height: 100px;
+  width: 50%;
+  height: 120px;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 6px;
   border: 1px solid lightgray;
@@ -71,9 +74,9 @@ header {
   border: 1px solid lightgray;
 }
 
-.submitBtn {
+button {
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px 10px 0 0;
   background-color: #9AAB89;
   color: white;
   border-radius: 6px;
@@ -81,7 +84,7 @@ header {
   cursor: pointer;
 }
 
-.submitBtn:hover {
+button:hover {
   background-color: #9aab89b0;
 }
 
@@ -89,7 +92,6 @@ header {
 
 .cigarLabel {
   display: flex;
-  justify-content: space-between;
   width: 100%;
 }
 
@@ -98,27 +100,22 @@ header {
 }
 
 hr {
-  width: 80%;
-  margin: 20px auto;
-}
-
-.cigarListContainer {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.cigarList p {
-  text-align: start;
-  width: 75%;
-  padding: 10px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 20px 0;
 }
 
 .singleCigar {
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
   padding: 26px;
+}
+
+.cigarBrand {
+  font-weight: bold;
+  margin: 0 0 12px 0;
 }
 
 .cigarImg {
@@ -126,8 +123,8 @@ hr {
 }
 
 .displayBtnContainer {
-  width: 200px;
-  margin: 0px auto;
+  width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  position: relative;
+  bottom: 0;
 }

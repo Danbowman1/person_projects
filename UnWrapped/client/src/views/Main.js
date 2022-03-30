@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import AllCigars from '../components/AllCigars'
 import Form from '../components/Form'
 import NavBar from '../components/NavBar'
-import Sidebar from '../components/Sidebar'
+
 
 const Main = () => {
 
@@ -52,8 +52,8 @@ const Main = () => {
             <NavBar setSearchTerm={setSearchTerm}/>
 
             <div className='mainContainer'>
-            <Sidebar />
-            <div>
+            
+            
             <Form 
                 onSubmitProp={createCigar}
                 initialCigarName=''
@@ -69,7 +69,7 @@ const Main = () => {
                 searchTerm={searchTerm}
                 
             />
-            </div>
+            
             </div>
 
         </div>
