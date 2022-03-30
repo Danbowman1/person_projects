@@ -5,19 +5,27 @@ import DeleteBtn from './DeleteBtn'
 
 const AllCigars = (props) => {
 
-    const {cigarList, removeFromDom} = props
+    const {cigarList, removeFromDom, searchTerm} = props
     const navigate = useNavigate()
 
     return (
         <div className='cigarListContainer'>
             {
-                cigarList.map((cigar, index)=>(
+                cigarList.filter((val)=>{
+                    if(searchTerm === ''){
+                        return val
+                    } else if (val.cigarName.toLowerCase().includes(searchTerm.toLowerCase()) || val.brand.toLowerCase().includes(searchTerm.toLowerCase())){
+                        return val
+                    }
+                })
+                .map((cigar, index)=>(
                     <div key={index} className="singleCigar">
                         <h2>{cigar.cigarName}</h2>
+                        <h3>{cigar.brand}</h3>
                         <img src={cigar.image} alt="Cigar" className='cigarImg' />
                         <p>{cigar.description}</p>
-                        <p>Rating:{cigar.rating}/5</p>
-                        <div className='displayBtnConntainer'>
+                        <p>Rating: {cigar.rating}/5</p>
+                        <div className='displayBtnContainer'>
                         <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
                         <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
                         </div>

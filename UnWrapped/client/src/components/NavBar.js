@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 
 
 
-const Header = () => {
+const Header = (props) => {
+
+    const {setSearchTerm} = props
+
     return (
         <header>
             <Link to={"/"} >
@@ -14,7 +17,7 @@ const Header = () => {
 
             </Link>
                 <form className='cigarSearch'>
-                    <input type="text" placeholder='Search...' />
+                    <input type="text" placeholder='Search...' onChange={(e)=>{setSearchTerm(e.target.value)}}/>
                 </form>
                 
                 

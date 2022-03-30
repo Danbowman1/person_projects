@@ -1,12 +1,14 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import AllCigars from '../components/AllCigars'
-import CigarForm from '../components/CigarForm'
-import Header from '../components/Header'
+import Form from '../components/Form'
+import NavBar from '../components/NavBar'
+import Sidebar from '../components/Sidebar'
 
 const Main = () => {
 
     const [cigarList, setCigarList] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')
     
 
     useEffect(()=>{
@@ -47,11 +49,15 @@ const Main = () => {
 
     return (
         <div>
-            <Header />
-            
-            <CigarForm 
+            <NavBar setSearchTerm={setSearchTerm}/>
+
+            <div className='mainContainer'>
+            <Sidebar />
+            <div>
+            <Form 
                 onSubmitProp={createCigar}
                 initialCigarName=''
+                initialBrand=''
                 initialDescription=''
                 initialImage=''
                 initialRating=''
@@ -60,7 +66,11 @@ const Main = () => {
             <AllCigars 
                 cigarList={cigarList}
                 removeFromDom={removeFromDom}
+                searchTerm={searchTerm}
+                
             />
+            </div>
+            </div>
 
         </div>
     )

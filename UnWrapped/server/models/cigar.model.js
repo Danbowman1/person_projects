@@ -7,6 +7,11 @@ const CigarSchema = new mongoose.Schema({
         required: [true, "A cigar's name is required!"],
     },
 
+    brand: {
+        type: String,
+        required: [true, "A cigar's brand is required"]
+    },
+
     description: {
         type: String,
         required: [true, "You must provide a description of the cigar!"]

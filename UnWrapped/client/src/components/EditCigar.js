@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import Header from '../components/Header'
-import CigarForm from './CigarForm'
+import NavBar from './NavBar'
+import Form from './Form'
 
 const EditCigar = () => {
 
@@ -12,10 +12,10 @@ const EditCigar = () => {
 
   const [cigar, setCigar] = useState({})
 
-  const editSubmitHandler = (e, data) =>{
+  const editSubmitHandler = (updatedCigar) =>{
 
     axios.put(`http://localhost:8000/api/cigars/${id}`,
-    data)
+    updatedCigar)
     .then((res)=>{
       console.log(res.data)
       navigate('/')
@@ -41,11 +41,12 @@ const EditCigar = () => {
   
   return (
     <div>
-      <Header />
+      <NavBar />
       {loaded &&
-      <CigarForm
+      <Form
         onSubmitProp={editSubmitHandler}
         initialCigarName={cigar.cigarName}
+        initialBrand={cigar.brand}
         initialDescription={cigar.description}
         initialImage={cigar.image}
         initialRating={cigar.rating}

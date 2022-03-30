@@ -1,34 +1,49 @@
 import React, { useState } from 'react'
 
 
+
 const CigarForm = (props) => {
-    const {initialCigarName, initialDescription, initialImage, initialRating, onSubmitProp, errors} = props
+    const {initialCigarName,initialBrand ,initialDescription, initialImage, initialRating, onSubmitProp, errors} = props
     const [cigarName, setCigarName] = useState(initialCigarName)
+    const [brand, setBrand] = useState(initialBrand)
     const [description, setDescription] = useState(initialDescription)
     const [image, setImage] = useState(initialImage)
     const [rating, setRating] = useState(initialRating)
 
     const submitHandler = (e) => {
         e.preventDefault()
-        onSubmitProp({cigarName, description, image, rating})
+        onSubmitProp({cigarName, brand, description, image, rating})
         setCigarName("")
+        setBrand("")
         setDescription("")
         setImage("")
         setRating(0)
+        window.location.reload(false);
     }
 
 
     return (
         <div className='formContainer'>
             <form  onSubmit={submitHandler}>
-                <div>
-                    <label>Cigar Name</label>
-                    <input 
-                    value={cigarName}
-                    type="text"
-                    onChange={(e)=> setCigarName(e.target.value)}
-                    name='cigarName'
-                    />
+                <div className="cigarLabel">
+                    <div>
+                        <label>Cigar Name</label>
+                        <input
+                        value={cigarName}
+                        type="text"
+                        onChange={(e)=> setCigarName(e.target.value)}
+                        name='cigarName'
+                        />
+                    </div>
+                    <div>
+                        <label>Brand</label>
+                        <input 
+                        value={brand}
+                        type="text"
+                        onChange={(e)=> setBrand(e.target.value)}
+                        name='brand'
+                        />
+                    </div>
                 </div>
                 <div>
                     <label>Description</label>
@@ -58,7 +73,7 @@ const CigarForm = (props) => {
                     </select>
                 </div>
                 
-                <button>Submit</button>
+                <button className='submitBtn'>Submit</button>
             </form>
         </div>
     )
