@@ -9,7 +9,7 @@ const AllCigars = (props) => {
     const navigate = useNavigate()
 
     return (
-        <div>
+        <div className='displayContainer'>
             {
                 cigarList.filter((val)=>{
                     if(searchTerm === ''){
@@ -20,14 +20,18 @@ const AllCigars = (props) => {
                 })
                 .map((cigar, index)=>(
                     <div key={index} className="singleCigar">
-                        <h2>{cigar.cigarName}</h2>
-                        <p className='cigarBrand'>{cigar.brand}</p>
-                        <img src={cigar.image} alt="Cigar" className='cigarImg' />
-                        <p>{cigar.description}</p>
-                        <p>Rating: {cigar.rating}/5</p>
+                        <div className='cigarHeader'>
+                            <h2>{cigar.cigarName}</h2>
+                            <p>{cigar.brand}</p>
+                        </div>
+                            <img src={cigar.image} alt="Cigar" className='cigarImg' />
+                            <div className="cigarReview">
+                                <p>{cigar.description}</p>
+                                <p>Rating: {cigar.rating}/5</p>
+                            </div>
                         <div className='displayBtnContainer'>
-                        <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
-                        <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
+                            <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
+                            <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
                         </div>
                     </div>
                 ))

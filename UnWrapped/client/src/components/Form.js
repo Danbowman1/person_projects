@@ -24,7 +24,7 @@ const CigarForm = (props) => {
 
     return (
         <div className='formContainer'>
-            <form  onSubmit={submitHandler}>
+            <form onSubmit={submitHandler}>
                 <div className="cigarLabel">
                     <div>
                         <label>Cigar Name</label>
