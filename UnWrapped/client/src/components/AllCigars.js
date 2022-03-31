@@ -5,6 +5,8 @@ import DeleteBtn from './DeleteBtn'
 
 const AllCigars = (props) => {
 
+    
+
     const {cigarList, removeFromDom, searchTerm} = props
     const navigate = useNavigate()
 

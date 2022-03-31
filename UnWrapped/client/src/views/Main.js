@@ -39,7 +39,7 @@ const Main = () => {
                 console.log(res);
                 console.log(res.data)
                 
-                setCigarList([...cigarList, res.data])
+                setCigarList([res.data, ...cigarList])
             })
             .catch((err) => {
                 console.log(err)

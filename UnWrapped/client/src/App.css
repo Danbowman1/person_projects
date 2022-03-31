@@ -3,6 +3,8 @@
   height: 100vh;
 }
 
+
+
 .mainContainer {
   display: flex;
   flex-direction: column;
@@ -13,6 +15,7 @@
 /* Navbar */
 header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: #9AAB89;
 }
@@ -23,7 +26,7 @@ header {
 
 .cigarSearch {
   width: 600px;
-  margin: 0 auto;
+  
 }
 
 .cigarSearch input {
@@ -31,6 +34,11 @@ header {
   padding: 10px;
   border-radius: 20px;
   border: none;
+}
+
+.navLinks a {
+  padding: 0 40px;
+
 }
 
 /* Form Styling */

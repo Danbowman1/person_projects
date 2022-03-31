@@ -24,6 +24,7 @@ const CigarSchema = new mongoose.Schema({
     rating: {
         type: Number,
         enum: [
+            0,
             1,
             2,
             3,
