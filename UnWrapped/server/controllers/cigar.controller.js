@@ -4,102 +4,111 @@ const fs = require('fs');
 
 module.exports = {
 
-    findAllCigars: (req, res)=>{
-        Cigar.find({}).sort({createdAt:-1})
-            .then((allCigars)=>{
+    findAllCigars: (req, res) => {
+        Cigar.find({}).sort({ createdAt: -1 })
+            .then((allCigars) => {
                 console.log(allCigars)
                 res.json(allCigars)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log("Find all Cigars failed")
-                res.json({message: "Something went wrong in findAll", error: err})
+                res.json({ message: "Something went wrong in findAll", error: err })
             })
     },
 
-    createNewCigar: (req, res)=>{
-        const storage = multer.diskStorage({
-            destination: (req, file, cb) => {
-                cb(null, 'uploads')
-            },
-            filename: (req, file, cb) => {
-                cb(null, file.fieldname + '-' + Date.now())
-            }
-        })
-        
-        const upload = multer({storage: storage})
+    createNewCigar: (req, res) => {
+        // const storage = multer.diskStorage({
+        //     destination: (req, file, cb) => {
+        //         cb(null, 'uploads')
+        //     },
+        //     filename: (req, file, cb) => {
+        //         cb(null, file.fieldname + '-' + Date.now())
+        //     }
+        // })
+        // const upload = multer({ storage: storage })
+
+        // upload.array('pictureList')
+
+
         const newCigarObject = new Cigar(req.body)
 
-        upload.array('pictureList'),
-                function (req, res, next) {
-                    console.log(req.files);
-                    console.log("req.files.path", req.files[0].path)
-                    fs.rename(
-                        req.files[0].path,
-                        'uploads/' + req.files[0].originalname,
-                        function (err) {
-                            if (err) {
-                                res.send('Error in file upload');
-                            } else {
-                                res.send('File upload was a success!');
-                            }
+        // console.log("req.image", req.image)
+
+        // console.log("upload", upload)
+
+        // upload.array('pictureList'),
+  
+                // console.log("35 req.image", req.image)
+                console.log("42", req.body)
+                console.log("43", req.body.image);
+                console.log("44 req.files", {...req.image})
+                console.log("req.files.path", req.files[0].path)
+        
+                fs.rename(
+                    req.files[0].path,
+                    'uploads/' + req.files[0].originalname,
+                    function (err) {
+                        if (err) {
+                            console.log(err)
+                        } else {
+                            console.log("good")
                         }
-                    );
-                }
-                newCigarObject.image = 'uploads/' + req.files[0].originalname
+                    }
+                );
+            
+        newCigarObject.image = 'uploads/' + req.files[0].originalname,
+        // console.log("57", newCigarObject.image)
         newCigarObject.save()
-            .then((newCigar)=>{
-                console.log(newCigar)
-                res.json(newCigar)
-                
-                
+            .then((newCigar) => {
+                return res.json(newCigar)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log("Something went wrong in createNewCigar")
                 res.status(400).json(err)
             })
-            
-            
+
+
     },
 
-    findOneCigar: (req, res)=>{
-        Cigar.findOne({_id: req.params.id})
-            .then((oneCigar)=>{
+    findOneCigar: (req, res) => {
+        Cigar.findOne({ _id: req.params.id })
+            .then((oneCigar) => {
                 console.log(oneCigar)
                 res.json(oneCigar)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log("Find One Cigar failed")
-                res.json({message: "Something went wrong in findOneCigar", error: err})
+                res.json({ message: "Something went wrong in findOneCigar", error: err })
             })
     },
 
-    deleteCigar: (req, res)=>{
-        Cigar.deleteOne({_id: req.params.id})
-            .then((deletedCigar)=>{
+    deleteCigar: (req, res) => {
+        Cigar.deleteOne({ _id: req.params.id })
+            .then((deletedCigar) => {
                 console.log(deletedCigar)
                 res.json(deletedCigar)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log("Delete One Cigar failed")
-                res.json({message: "Something went wrong in deleteCigar", error: err})
+                res.json({ message: "Something went wrong in deleteCigar", error: err })
             })
     },
 
-    updateCigar: (req, res)=>{
-        Cigar.findOneAndUpdate({_id: req.params.id},
+    updateCigar: (req, res) => {
+        Cigar.findOneAndUpdate({ _id: req.params.id },
             req.body,
-            {new: true, runValidators: true}
-            )
-            .then((updatedCigar)=>{
+            { new: true, runValidators: true }
+        )
+            .then((updatedCigar) => {
                 console.log(updatedCigar)
                 res.json(updatedCigar)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log("Something went wrong in updateCigar")
                 res.status(400).json(err)
             })
     },
 
-    
+
 
 }

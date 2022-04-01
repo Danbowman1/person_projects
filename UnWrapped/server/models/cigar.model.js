@@ -4,22 +4,22 @@ const CigarSchema = new mongoose.Schema({
 
     cigarName: {
         type: String,
-        required: [true, "A cigar's name is required!"],
+        // required: [true, "A cigar's name is required!"],
     },
 
     brand: {
         type: String,
-        required: [true, "A cigar's brand is required"]
+        // required: [true, "A cigar's brand is required"]
     },
 
     description: {
         type: String,
-        required: [true, "You must provide a description of the cigar!"]
+        // required: [true, "You must provide a description of the cigar!"]
     },
 
     image: {
-        type: String,
-        required: [true, "An image of your cigar is required!"]
+        type: String
+        // required: [true, "An image of your cigar is required!"]
     },
     rating: {
         type: Number,
@@ -31,7 +31,7 @@ const CigarSchema = new mongoose.Schema({
             4,
             5
         ],
-        required: [true, "You must rate the cigar!"]
+        // required: [true, "You must rate the cigar!"]
     }
     
 

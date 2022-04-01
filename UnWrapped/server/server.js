@@ -16,23 +16,19 @@ const app = express()
 // const upload = multer({storage: storage})
 
 
-
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
 app.use('/uploads', express.static('uploads'));
 
-app.use(function (err, req, res, next) {
-    console.log('This is the invalid field ->', err.field);
-    next(err);
-});
+// app.use(function (err, req, res, next) {
+//     console.log('This is the invalid field ->', err.field);
+//     next(err);
+// });
 
 require('./config/mongoose.config')
 require('./routes/cigar.routes')(app)
-
-
 
 
 

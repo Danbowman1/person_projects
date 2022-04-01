@@ -11,16 +11,16 @@ const CigarForm = (props) => {
     const [image, setImage] = useState(null)
     const [rating, setRating] = useState(initialRating)
 
-    const submitHandler = (e) => {
-        e.preventDefault()
-        onSubmitProp({cigarName, brand, description, image, rating})
-        setCigarName("")
-        setBrand("")
-        setDescription("")
-        setImage("")
-        setRating(0)
+    // const submitHandler = (e) => {
+    //     e.preventDefault()
+    //     onSubmitProp({cigarName, brand, description, image, rating})
+    //     setCigarName("")
+    //     setBrand("")
+    //     setDescription("")
+    //     setImage("")
+    //     setRating(0)
 
-    }
+    // }
 
     const submitHandler2 = (e) => {
         e.preventDefault()
@@ -28,22 +28,34 @@ const CigarForm = (props) => {
         let newArr = [];
         //********* HERE IS THE CHANGE ***********
         for (let i = 0; i < image.length; i++) {
+            console.log(i)
             formData.append('pictureList', image[i]);
+
         }
     
-        console.log(formData.get('pictureList'));
-        console.log(formData.get('pictureList').name);
-        console.log(formData)
+        
+        // console.log(formData.get('pictureList'));
+        // console.log(formData.get('pictureList').name);
+        // console.log(formData)
+
+        // console.log({yo}, ...formData)
+
+
+        // let {yo} = formData
+
+        // console.log(yo)
+
+  
+        // console.log(image)
+
         axios
             .post('http://localhost:8000/api/cigars', 
-            {
-                image: formData.get('pictureList').name,
-                cigarName,
-                brand,
-                description,
-                rating
-            })
-            .then((res) => res.data);
+                formData,
+            )
+            .then((res) =>{
+                console.log(res.data)
+            } );
+
     
         // onSubmitProp({cigarName, brand, description, image, rating})
         // setCigarName("")
@@ -57,7 +69,7 @@ const CigarForm = (props) => {
     return (
         <div className='formContainer'>
             {/* <form onSubmit={submitHandler2} encType="multipart/form-data" method='POST' action='uploadpicture'> */}
-            <form onSubmit={submitHandler2} encType="multipart/form-data" method='POST' action=''>
+            <form onSubmit={submitHandler2} encType="multipart/form-data">
                 <div className="cigarLabel"> 
                     <div>
                         <label>Cigar Name</label>
@@ -90,9 +102,14 @@ const CigarForm = (props) => {
                     <label>Image</label>
                     <input 
                     type="file"
-                    onChange={(e)=> setImage(e.target.files)}
+                    onChange={(e)=>{
+                        console.log(e.target.files)
+                        console.log(e.target.files[0])
+                        setImage(e.target.files)
+                    
+                    }}
                     multiple
-                    name='image'
+                    name='pictureList'
                     />
                 </div>
                 <div>
