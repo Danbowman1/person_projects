@@ -7,7 +7,6 @@ module.exports = {
     Cigar.find({})
       .sort({ createdAt: -1 })
       .then((allCigars) => {
-        console.log(allCigars);
         res.json(allCigars);
       })
       .catch((err) => {
@@ -21,7 +20,6 @@ module.exports = {
     newCigarObject
       .save()
       .then((newCigar) => {
-        console.log(newCigar);
         res.json(newCigar);
       })
       .catch((err) => {
