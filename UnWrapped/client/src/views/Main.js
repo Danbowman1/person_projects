@@ -9,6 +9,7 @@ const Main = () => {
 
     const [cigarList, setCigarList] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
+    const [errors, setErrors] = useState({})
     
 
     useEffect(()=>{
@@ -43,6 +44,9 @@ const Main = () => {
             })
             .catch((err) => {
                 console.log(err)
+                console.log(err.response.data)
+                console.log(err.response.data.errors)
+                setErrors(err.response.data.errors)
             })
     }
     
@@ -61,6 +65,7 @@ const Main = () => {
                 initialDescription=''
                 initialImage=''
                 initialRating=''
+                errors={errors}
             />
             <hr/>
             <AllCigars 
