@@ -76,7 +76,7 @@ const CigarForm = (props) => {
                 />
                 {
                     errors.cigarName?
-                    <span className="errorMessage">{errors.cigarName.message}</span>
+                    <span className='errorMessage'>{errors.cigarName.message}</span>
                     :null
                 }
             </div>
@@ -90,7 +90,7 @@ const CigarForm = (props) => {
                 />
                 {
                     errors.brand?
-                    <span className="errorMessage">{errors.brand.message}</span>
+                    <span className='errorMessage'>{errors.brand.message}</span>
                     :null
                 }
             </div>
@@ -104,16 +104,16 @@ const CigarForm = (props) => {
             />
             {
                     errors.description?
-                    <span className="errorMessage">{errors.description.message}</span>
+                    <span className='errorMessage'>{errors.description.message}</span>
                     :null
                 }
             </div>
-            <div>
-            <label>Image</label>
+            <label >Image</label>
+            <div className='fileInputContainer'>
             <input type="file" onChange={(e) => setImage(e.target.files)} name="image" id='file' ref={ref} />
                 {
                     image === null?
-                    <span>Make sure to include an image</span>
+                    <span className='imgWarning'>You must include a picture</span>
                     :null
                 }
             </div>
@@ -131,7 +131,7 @@ const CigarForm = (props) => {
             </select>
             {
                     errors.rating?
-                    <span className="errorMessage">{errors.rating.message}</span>
+                    <span className='errorMessage'>{errors.rating.message}</span>
                     :null
                 }
             </div>

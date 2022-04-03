@@ -23,8 +23,10 @@ const AllCigars = (props) => {
                 .map((cigar, index)=>(
                     <div key={index} className="singleCigar">
                         <div className='cigarHeader'>
+                        <Link to={`/cigar/${cigar._id}`} className="oneCigarLink">
                             <h2>{cigar.cigarName}</h2>
                             <p>{cigar.brand}</p>
+                        </Link>
                         </div>
                             <img src={cigar.image} alt="Cigar" className='cigarImg' />
                             <div className="cigarReview">
