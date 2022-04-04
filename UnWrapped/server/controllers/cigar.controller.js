@@ -4,8 +4,9 @@ const fs = require('fs');
 
 module.exports = {
   findAllCigars: (req, res) => {
-    Cigar.find({})
+    Cigar.find()
       .sort({ createdAt: -1 })
+      .populate("messages", "content likes _id")
       .then((allCigars) => {
         res.json(allCigars);
       })
@@ -30,6 +31,7 @@ module.exports = {
 
   findOneCigar: (req, res) => {
     Cigar.findOne({ _id: req.params.id })
+      .populate("messages", "content likes")
       .then((oneCigar) => {
         console.log(oneCigar);
         res.json(oneCigar);

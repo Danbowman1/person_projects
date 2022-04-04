@@ -9,6 +9,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 5000
 app.use(cors());
 require('./config/mongoose.config');
 require('./routes/cigar.routes')(app);
+require('./routes/message.routes')(app);
 const port = 8000;
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));

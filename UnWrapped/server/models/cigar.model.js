@@ -32,7 +32,14 @@ const CigarSchema = new mongoose.Schema({
             5
         ],
         required: [true, "You must rate the cigar!"]
-    }
+    },
+
+    messages: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Message"
+        }
+    ]
     
 
 }, {timestamps: true})
