@@ -33,7 +33,6 @@ module.exports = {
     Cigar.findOne({ _id: req.params.id })
       .populate("messages", "content likes")
       .then((oneCigar) => {
-        console.log(oneCigar);
         res.json(oneCigar);
       })
       .catch((err) => {
@@ -57,7 +56,6 @@ module.exports = {
   updateCigar: (req, res) => {
     Cigar.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })
       .then((updatedCigar) => {
-        console.log(updatedCigar);
         res.json(updatedCigar);
       })
       .catch((err) => {

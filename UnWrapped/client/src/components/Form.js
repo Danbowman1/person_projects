@@ -12,7 +12,7 @@ const CigarForm = (props) => {
     onSubmitProp,
     errors,
     } = props;
-    const ref =useRef()
+    const ref = useRef()
     const [cigarName, setCigarName] = useState(initialCigarName);
     const [brand, setBrand] = useState(initialBrand);
     const [description, setDescription] = useState(initialDescription);

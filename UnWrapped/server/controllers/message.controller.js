@@ -6,7 +6,6 @@ module.exports = {
 
     findAllMessages: (req, res) => {
         Message.find({})
-            .sort({ createdAt: -1 })
             // .populate("associatedCigar", "_id")
             .then((allMessage) => {
                 res.json(allMessage);
