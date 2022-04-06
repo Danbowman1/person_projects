@@ -5,10 +5,11 @@ const Cigar = require("../models/cigar.model")
 module.exports = {
 
     findAllMessages: (req, res) => {
-        Message.find({})
+        Message.find()
             // .populate("associatedCigar", "_id")
-            .then((allMessage) => {
-                res.json(allMessage);
+            .then((allMessages) => {
+                console.log(allMessages)
+                res.json(allMessages);
             })
             .catch((err) => {
                 console.log('Find all Message failed');

@@ -13,9 +13,11 @@ function App() {
 
   useEffect(()=>{
     socket.on("connect", ()=>{
-      console.log("socket in the client", socket.id)
+      console.log("socket in the client: ", socket.id)
     })
-    return ()=> socket.disconnect(true)
+
+    return () => socket.disconnect(true);
+
   }, [])
 
 
@@ -26,7 +28,7 @@ function App() {
         <Route path='/' element={<Main/>} />
         <Route path='/cigar/edit/:id' element={<EditCigar/>} />
         <Route path='/cigar/login' element={<UserLogin />} />
-        <Route path='/cigar/:id' element={<OneCigar socket={socket} />} />
+        <Route path='/cigar/:id' element={<OneCigar socket={socket}/>} />
       </Routes>
     </div>
     </BrowserRouter>

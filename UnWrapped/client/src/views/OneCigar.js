@@ -20,24 +20,24 @@ const OneCigar = (props) => {
                 setMessageList(res.data.messages)
             })
             .catch((err)=>console.log(err))
-    }, [])
+    }, [id])
 
-    const addMessage = (e) => {
+    const addAMessage = () => {
         axios.post("http://localhost:8000/api/messages/" + id,
-        {
-            content,
-            associatedCigar: id
-        })
-        .then((res)=>{
-            console.log(res.data)
-            setMessageList([ ...messageList, res.data])
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
+            {
+                content, // content:content
+                associatedCigar: id
+            })
+            .then((res) => {
+                console.log(res.data);
+                setMessageList([res.data, ...messageList ])
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         socket.on("Update_chat_likes", (data) => {
             console.log("our socket updated list", data)
             setMessageList(data)
@@ -50,18 +50,20 @@ const OneCigar = (props) => {
                 likes: messageFromBelow.likes + 1
             }
         )
-        .then((res)=>{
-            console.log(res)
+            .then((res) => {
+                console.log(res.data);
 
-            let updatedMessageList = messageList.map((message, index)=>{
-                if(message === messageFromBelow) {
-                    let messageHolder = { ...res.data }
-                    return messageHolder
-                }
-                return message
+                let updatedMessageList = messageList.map((message, index) => {
+                    if (message === messageFromBelow) {
+                        let messageHolder = { ...res.data };
+                        return messageHolder;
+                    }
+                    return message;
+                });
+
+                // setMessageList(updatedMessageList);
+                socket.emit("Update_chat", updatedMessageList)
             })
-            socket.emit("Update_chat", updatedMessageList)
-        })
     }
 
     return (
@@ -84,13 +86,13 @@ const OneCigar = (props) => {
         </div>
         <form className='commentContainer'>
             <textarea name="comments" value={content} className='commentTextarea' onChange={(e)=> setContent(e.target.value)}></textarea>
-            <button onClick={addMessage}>Comment</button>
+            <button onClick={addAMessage}>Comment</button>
             {
                 messageList?
                 messageList.map((message, index)=>(
-                    <div key={index}>
+                    <div key={index} className="singleComment">
                         <p>{message.content}</p>
-                        <button onClick={() => likeMessage(message)}>Like {message.likes}</button>
+                        <button onClick={() => likeMessage(message)} className="likeBtn">Like {message.likes}</button>
                     </div>
                 ))
                 :null

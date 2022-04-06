@@ -190,3 +190,14 @@ hr {
   height: 200px;
   
 }
+
+.singleComment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.likeBtn {
+  margin: 0 auto;
+  width: 80px;
+}
