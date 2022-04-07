@@ -28,7 +28,7 @@ module.exports = {
                     },
                     {
                         new: true,
-                        useFindAndMondify: true
+                        useFindAndModify: true
                     })
                     .populate("messages", "content _id")
                     .then((cigarToUpdate)=>{
@@ -49,7 +49,7 @@ module.exports = {
             req.body,
             { new: true, runValidators: true }
         )
-        .populate("associatedCigar", "cigarName Brand")
+        .populate("associatedCigar", "cigarName brand")
         .then((likeAdded)=>{
             res.json(likeAdded)
         })

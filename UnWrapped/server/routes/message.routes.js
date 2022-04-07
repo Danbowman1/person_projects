@@ -1,9 +1,9 @@
-const messageController = require("../controllers/message.controller")
+const MessageController = require("../controllers/message.controller")
 
 
 module.exports = (app) => {
     
-    app.get("/api/messages", messageController.findAllMessages)
-    app.post("/api/messages/:id", messageController.createNewMessage)
-    app.put("/api/messages/:id", messageController.likeMessage)
+    app.get("/api/messages", MessageController.findAllMessages)
+    app.post("/api/messages/:id", MessageController.createNewMessage)
+    app.put("/api/messages/:id", MessageController.likeMessage)
 }

@@ -12,6 +12,7 @@ const OneCigar = (props) => {
     const [content, setContent] = useState('')
 
     useEffect(()=>{
+        
         axios.get(`http://localhost:8000/api/cigars/${id}`)
             .then((res)=>{
                 console.log(res)
@@ -22,15 +23,17 @@ const OneCigar = (props) => {
             .catch((err)=>console.log(err))
     }, [id])
 
-    const addAMessage = () => {
+    const addAMessage = (e) => {
+        e.preventDefault()
         axios.post("http://localhost:8000/api/messages/" + id,
             {
-                content, // content:content
+                content, 
                 associatedCigar: id
             })
             .then((res) => {
                 console.log(res.data);
-                setMessageList([res.data, ...messageList ])
+                setMessageList([...messageList, res.data  ])
+                setContent('')
             })
             .catch((err) => {
                 console.log(err);
@@ -44,7 +47,8 @@ const OneCigar = (props) => {
         })
     }, [])
 
-    const likeMessage = (messageFromBelow) => {
+    const likeMessage = (messageFromBelow, e) => {
+        e.preventDefault()
         axios.put(`http://localhost:8000/api/messages/${messageFromBelow._id}`,
             {
                 likes: messageFromBelow.likes + 1
@@ -60,6 +64,7 @@ const OneCigar = (props) => {
                     }
                     return message;
                 });
+                
 
                 // setMessageList(updatedMessageList);
                 socket.emit("Update_chat", updatedMessageList)
@@ -69,39 +74,37 @@ const OneCigar = (props) => {
     return (
         <div>
         <Header />
-        <div className="mainContainer">
-            <div className="singleCigar">
-                <h2 className='cigarHeader'>{cigar.cigarName}</h2>
-                <p>{cigar.brand}</p>
-                <img src={cigar.image} alt="Cigar" className='cigarImg' />
-                <div className="cigarReview">
-                <p>{cigar.description}</p>
-                <p>Rating: {cigar.rating}/5</p>
+            <div className="mainContainer">
+                <div className="singleCigar">
+                    <h2 className='cigarHeader'>{cigar.cigarName}</h2>
+                    <p>{cigar.brand}</p>
+                    <img src={cigar.image} alt="Cigar" className='cigarImg' />
+                    <div className="cigarReview">
+                    <p>{cigar.description}</p>
+                    <p>Rating: {cigar.rating}/5</p>
+                </div>
             </div>
-        </div>
-        <hr />
-        <div className="commentsHeader">
-            <h3>Comments</h3>
-            <h4>{messageList.length}</h4>
-        </div>
-        <form className='commentContainer'>
-            <textarea name="comments" value={content} className='commentTextarea' onChange={(e)=> setContent(e.target.value)}></textarea>
-            <button onClick={addAMessage}>Comment</button>
-            {
-                messageList?
-                messageList.map((message, index)=>(
-                    <div key={index} className="singleComment">
-                        <p>{message.content}</p>
-                        <button onClick={() => likeMessage(message)} className="likeBtn">Like {message.likes}</button>
-                    </div>
-                ))
-                :null
-            }
-        </form>
+            <hr />
+            <div className="commentsHeader">
+                <h3>Comments</h3>
+                <h4>{messageList.length}</h4>
+            </div>
+            <form className='commentContainer'>
+                <textarea name="comments" value={content} className='commentTextarea' onChange={(e)=> setContent(e.target.value)}></textarea>
+                <button onClick={addAMessage} className='commentBtn'>Comment</button>
+                {
+                    messageList?
+                    messageList.map((message, index)=>(
+                        <div key={index} className="singleComment">
+                            <p>{message.content}</p>
+                            <button onClick={(e) => likeMessage(message, e)} className="likeBtn">Like {message.likes}</button>
+                        </div>
+                    ))
+                    :null
+                }
+            </form>
+            </div>
         
-        </div>
-        
-            
         </div>
     )
 }

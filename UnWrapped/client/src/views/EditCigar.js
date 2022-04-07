@@ -56,8 +56,8 @@ const EditCigar = () => {
         initialRating={cigar.rating}
         errors={errors}
       />
+
         </div>
-      
       }
     </div>
   )

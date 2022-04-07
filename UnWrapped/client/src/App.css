@@ -1,9 +1,11 @@
-.App {
+/* .App {
   width: 100vw;
   height: 100vh;
+} */
+
+body {
+  background-color: rgb(243, 243, 243);
 }
-
-
 
 .mainContainer {
   display: flex;
@@ -68,7 +70,7 @@ form {
 }
 
 .formContainer textarea {
-  width: 50%;
+  width: 40%;
   height: 120px;
   margin: 10px 0;
   min-width: 250px;
@@ -131,10 +133,12 @@ select {
   color: rgb(221, 114, 0);
 }
 
+
 /* Display Area Styling */
 
 hr {
   width: 100%;
+  min-width: 300px;
   margin: 20px 0;
 }
 
@@ -149,7 +153,10 @@ hr {
   display: flex;
   flex-direction: column;
   width: 40%;
+  min-width: 300px;
+  margin: 16px;
   padding: 26px;
+  background-color: white;
 }
 
 .cigarHeader {
@@ -158,6 +165,10 @@ hr {
 
 .cigarImg {
   width: 260px;
+}
+
+.displayContainer p {
+  min-width: 260px;
 }
 
 .displayBtnContainer {
@@ -188,16 +199,24 @@ hr {
 .commentTextarea {
   width: 100%;
   height: 200px;
-  
+  border: 1px solid lightgray;
+  border-radius: 6px;
+}
+
+.commentBtn {
+  margin-bottom: 26px;
 }
 
 .singleComment {
+  margin: 20px 0;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  border-radius: 6px;
+  background-color: white;
 }
 
 .likeBtn {
-  margin: 0 auto;
   width: 80px;
 }
