@@ -12,33 +12,39 @@ const OneCigar = (props) => {
     const [content, setContent] = useState('')
 
     useEffect(()=>{
-        
-        axios.get(`http://localhost:8000/api/cigars/${id}`)
-            .then((res)=>{
-                console.log(res)
-                console.log(res.data)
-                setCigar(res.data)
-                setMessageList(res.data.messages)
-            })
-            .catch((err)=>console.log(err))
+        const cigarGetter = async () =>{
+            try {
+                const res = await axios.get(`http://localhost:8000/api/cigars/${id}`)
+                
+                    console.log(res)
+                    console.log(res.data)
+                    setCigar(res.data)
+                    setMessageList(res.data.messages)
+                } catch (err){
+                    console.log(err)
+                }
+        }
+        cigarGetter()
     }, [id])
+        
 
-    const addAMessage = (e) => {
+    const addAMessage = async (e) => {
         e.preventDefault()
-        axios.post("http://localhost:8000/api/messages/" + id,
-            {
-                content, 
-                associatedCigar: id
-            })
-            .then((res) => {
-                console.log(res.data);
-                setMessageList([...messageList, res.data  ])
-                setContent('')
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
+        try {
+            const res = await axios.post("http://localhost:8000/api/messages/" + id,
+                {
+                    content, 
+                    associatedCigar: id
+                })
+                    console.log(res.data);
+                    setMessageList([...messageList, res.data  ])
+                    setContent('')
+        }catch(err) {
+            console.log(err);
+        }
+                
+            }
+    
 
     useEffect(() => {
         socket.on("Update_chat_likes", (data) => {
