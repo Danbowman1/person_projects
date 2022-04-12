@@ -5,6 +5,7 @@ import Main from './views/Main';
 import EditCigar from './views/EditCigar';
 import UserLogin from './views/UserLogin';
 import OneCigar from './views/OneCigar';
+import UserRegistration from './views/UserRegistration';
 import io from 'socket.io-client'
 
 function App() {
@@ -25,9 +26,10 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <Routes>
-        <Route path='/' element={<Main/>} />
+        <Route path='/' element={<UserLogin />} />
+        <Route path='/registration' element={<UserRegistration />} />
+        <Route path='/home' element={<Main/>} />
         <Route path='/cigar/edit/:id' element={<EditCigar/>} />
-        <Route path='/cigar/login' element={<UserLogin />} />
         <Route path='/cigar/:id' element={<OneCigar socket={socket}/>} />
       </Routes>
     </div>

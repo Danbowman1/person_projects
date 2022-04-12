@@ -1,12 +1,15 @@
 const Cigar = require('../models/cigar.model');
+const User = require('../models/user.model')
 const multer = require('multer');
 const fs = require('fs');
+const jwt = require('jsonwebtoken')
 
 module.exports = {
   findAllCigars: (req, res) => {
     Cigar.find()
       .sort({ createdAt: -1 })
       .populate("messages", "content likes _id")
+      .populate("createdBy", "username email")
       .then((allCigars) => {
         res.json(allCigars);
       })
@@ -17,7 +20,12 @@ module.exports = {
   },
 
   createNewCigar: (req, res) => {
+
     const newCigarObject = new Cigar(req.body);
+    const decodedJWT = jwt.decode(req.cookies. usertoken,{
+      complete: true
+    })
+    newCigarObject.createdBy = decodedJWT.payload.id
     newCigarObject
       .save()
       .then((newCigar) => {
@@ -63,4 +71,38 @@ module.exports = {
         res.status(400).json(err);
       });
   },
+
+
+  findAllCigarsByUser: (req, res)=>{
+    if(req.jwtpayload.username !== req.params.username){
+      console.log("Not the user")
+
+      User.findOne({username: req.params.username})
+        .then((userNotLoggedIn)=>{
+            Cigar.find({createdBy: userNotLoggedIn._id})
+              .populate("createdBy", "username")
+              .then((allCigarsFromUser)=>{
+                console.log(allCigarsFromUser)
+                res.json(allCigarsFromUser)
+              })
+        })
+        .catch((err)=>{
+          console.log(err)
+          res.status(400).json(err)
+        })
+    } else {
+      console.log("current user")
+      console.log("req.jwtpayload.id:", req.jwtpayload.id)
+      Cigar.find({createdBy: req.jwtpayload.id})
+        .populate("createdBy", " username")
+        .then((allCigarsFromLoggedInUser)=>{
+          console.log(allCigarsFromLoggedInUser)
+          res.json(allCigarsFromLoggedInUser)
+        })
+        .catch((err)=>{
+          console.log(err)
+          res.status(400).json(err)
+        })
+    }
+  }
 };

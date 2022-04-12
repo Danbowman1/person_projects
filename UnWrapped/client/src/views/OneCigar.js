@@ -15,7 +15,6 @@ const OneCigar = (props) => {
         const cigarGetter = async () =>{
             try {
                 const res = await axios.get(`http://localhost:8000/api/cigars/${id}`)
-                
                     console.log(res)
                     console.log(res.data)
                     setCigar(res.data)
@@ -71,8 +70,6 @@ const OneCigar = (props) => {
                     return message;
                 });
                 
-
-                // setMessageList(updatedMessageList);
                 socket.emit("Update_chat", updatedMessageList)
             })
     }

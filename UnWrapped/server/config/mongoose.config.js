@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
-const dbName = "cigarsDB"
+// const dbName = "cigarsDB"
 
-mongoose.connect(`mongodb://localhost/${dbName}`, {
+mongoose.connect(`mongodb://localhost/${process.env.DB_NAME}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
     .then(()=>{
-        console.log(`Connected to ${dbName} database!`)
+        console.log(`Connected to ${process.env.DB_NAME} database!`)
     })
     .catch((err)=>{
         console.log(err)

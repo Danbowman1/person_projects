@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import axios from 'axios';
 
-const CigarForm = (props) => {
+
+const Form = (props) => {
     
     const {
     initialCigarName,
@@ -64,7 +64,7 @@ const CigarForm = (props) => {
 
     return (
         <div className="formContainer">
-        <form onSubmit={handleSubmit} action="">
+        <form onSubmit={handleSubmit}>
             <div className="cigarLabel">
             <div>
                 <label>Cigar Name</label>
@@ -111,11 +111,11 @@ const CigarForm = (props) => {
             <label >Image</label>
             <div className='fileInputContainer'>
             <input type="file" onChange={(e) => setImage(e.target.files)} name="image" id='file' ref={ref} />
-                {
+                {/* {
                     image === null?
                     <span className='imgWarning'>You must include a picture</span>
                     :null
-                }
+                } */}
             </div>
             <div>
             <select name="rating" value={rating} onChange={(e) => setRating(e.target.value)}>
@@ -142,4 +142,4 @@ const CigarForm = (props) => {
     );
 };
 
-export default CigarForm;
+export default Form;

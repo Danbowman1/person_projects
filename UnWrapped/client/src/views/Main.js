@@ -35,7 +35,9 @@ const Main = () => {
 
     const createCigar = (cigarParam) => {
         axios
-            .post("http://localhost:8000/api/cigars", cigarParam)
+            .post("http://localhost:8000/api/cigars", cigarParam,
+                { withCredentials: true }
+            )
             .then((res) => {
                 console.log(res);
                 console.log(res.data)
