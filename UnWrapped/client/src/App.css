@@ -1,8 +1,3 @@
-/* .App {
-  width: 100vw;
-  height: 100vh;
-} */
-
 body {
   background-color: rgb(243, 243, 243);
 }
@@ -20,6 +15,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: #9aab89;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .logo {
@@ -28,7 +24,6 @@ header {
 
 .cigarSearch {
   width: 600px;
-  
 }
 
 .cigarSearch input {
@@ -40,12 +35,9 @@ header {
 
 .navLinks a {
   padding: 0 40px;
-
 }
 
 /* Form Styling */
-
-
 .formContainer {
   display: flex;
   width: 100%;
@@ -56,7 +48,8 @@ header {
 form {
   width: 100%;
 }
-.formContainer input {
+
+input[type="text"] {
   height: 20px;
   margin: 10px 0;
   display: flex;
@@ -103,6 +96,7 @@ button {
   border-radius: 6px;
   border: none;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
 button:hover {
@@ -133,7 +127,6 @@ select {
   color: rgb(221, 114, 0);
 }
 
-
 /* Display Area Styling */
 
 hr {
@@ -156,7 +149,9 @@ hr {
   min-width: 300px;
   margin: 16px;
   padding: 26px;
+  border-radius: 10px;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .cigarHeader {
@@ -183,12 +178,12 @@ hr {
   font-weight: bold;
 }
 
-
 /* Display One Page */
 
 .commentContainer {
   width: 50%;
   margin: 0 auto;
+  
 }
 
 .commentsHeader {
@@ -199,8 +194,12 @@ hr {
 .commentTextarea {
   width: 100%;
   height: 200px;
+  padding: 6px;
   border: 1px solid lightgray;
   border-radius: 6px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .commentBtn {
@@ -215,8 +214,18 @@ hr {
   justify-content: space-between;
   border-radius: 6px;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .likeBtn {
   width: 80px;
+}
+
+/* Login/Registration */
+
+.inputContainer {
+  width: 10%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
