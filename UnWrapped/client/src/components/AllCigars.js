@@ -21,6 +21,7 @@ const AllCigars = (props) => {
                 })
                 .map((cigar, index)=>(
                     <div key={index} className="singleCigar">
+                        
                         <div className='cigarHeader'>
                         <Link to={`/cigar/${cigar._id}`} className="oneCigarLink">
                             <h2>{cigar.brand}</h2>
@@ -36,11 +37,8 @@ const AllCigars = (props) => {
                                 <div className='displayBtnContainer'>
                                 <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
                                 <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
-                                </div>
-                                <div className="postedLink">
-                                <p>Posted By:</p>
-                                <Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link>
-                                </div>
+                                </div> 
+                                <p>Posted By: <Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link></p>
                             </div>
                         
                     </div>

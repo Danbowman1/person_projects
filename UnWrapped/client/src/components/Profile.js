@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
+import NavBar from '../components/NavBar'
 
 const Profile = (props) => {
 
@@ -28,6 +29,8 @@ const Profile = (props) => {
 
     return (
         <div>
+        <NavBar />
+        <div className='profileContainer'>
             {
                 userCigarList.map((cigar, index)=>(
                     
@@ -48,6 +51,9 @@ const Profile = (props) => {
                 ))
             }
         </div>
+
+        </div>
+        
     )
 }
 

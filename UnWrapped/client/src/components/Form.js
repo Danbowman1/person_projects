@@ -66,6 +66,7 @@ const Form = (props) => {
         <div className="formContainer">
         <form onSubmit={handleSubmit}>
             <div className="cigarLabel">
+
             <div>
                 <label>Brand</label>
                 <input
