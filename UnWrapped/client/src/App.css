@@ -178,6 +178,11 @@ hr {
   font-weight: bold;
 }
 
+.postedLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* Display One Page */
 
 .commentContainer {

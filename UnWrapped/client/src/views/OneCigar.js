@@ -78,7 +78,7 @@ const OneCigar = (props) => {
         <div>
         <Header />
             <div className="mainContainer">
-                <div className="singleCigar">
+                <div className="displayOneCigar ">
                     <h2 className='cigarHeader'>{cigar.cigarName}</h2>
                     <p>{cigar.brand}</p>
                     <img src={cigar.image} alt="Cigar" className='cigarImg' />

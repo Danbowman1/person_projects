@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 
 
@@ -7,6 +9,37 @@ import { Link } from 'react-router-dom'
 const Header = (props) => {
 
     const {setSearchTerm} = props
+    const [user, setUser] = useState({})
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        const userGetter = async () =>{
+            try{
+            const res = await axios.get('http://localhost:8000/api/users',
+            { withCredentials: true })
+                console.log(res.data)
+                setUser(res.data)
+                console.log(user)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        userGetter() 
+    }, [])
+
+    const logout = (e) =>{
+        axios.post("http://localhost:8000/api/users/logout",
+        {},
+        { withCredentials: true }
+        )
+        .then((res)=>{
+            console.log(res.data)
+            navigate('/')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }
 
     return (
         <header>
@@ -22,8 +55,8 @@ const Header = (props) => {
             </div>
                 
                 <div className="navLinks">
-                    <Link to={"/cigar/login"}>User</Link>
-                    
+                    <Link to={`/user/profile/${user.username}`}>Your Profile</Link>
+                    <button className='logoutBtn' onClick={logout}>Logout</button>
                 </div>
                 
 

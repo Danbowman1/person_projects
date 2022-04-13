@@ -8,8 +8,8 @@ module.exports = {
   findAllCigars: (req, res) => {
     Cigar.find()
       .sort({ createdAt: -1 })
-      .populate("messages", "content likes _id")
       .populate("createdBy", "username email")
+      .populate("messages", "content likes _id")
       .then((allCigars) => {
         res.json(allCigars);
       })

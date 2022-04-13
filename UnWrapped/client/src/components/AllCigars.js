@@ -6,7 +6,7 @@ const AllCigars = (props) => {
 
     
 
-    const {cigarList, removeFromDom, searchTerm} = props
+    const {cigarList, removeFromDom, searchTerm, user} = props
     const navigate = useNavigate()
 
     return (
@@ -23,8 +23,8 @@ const AllCigars = (props) => {
                     <div key={index} className="singleCigar">
                         <div className='cigarHeader'>
                         <Link to={`/cigar/${cigar._id}`} className="oneCigarLink">
-                            <h2>{cigar.cigarName}</h2>
-                            <p>{cigar.brand}</p>
+                            <h2>{cigar.brand}</h2>
+                            <p>{cigar.cigarName}</p>
                         </Link>
                         </div>
                             <img src={cigar.image} alt="Cigar" className='cigarImg' />
@@ -32,10 +32,17 @@ const AllCigars = (props) => {
                                 <p>{cigar.description}</p>
                                 <p>Rating: {cigar.rating}/5</p>
                             </div>
-                        <div className='displayBtnContainer'>
-                            <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
-                            <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
-                        </div>
+                            <div className="singleCigarBottom">
+                                <div className='displayBtnContainer'>
+                                <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
+                                <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
+                                </div>
+                                <div className="postedLink">
+                                <p>Posted By:</p>
+                                <Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link>
+                                </div>
+                            </div>
+                        
                     </div>
                 ))
             }

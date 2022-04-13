@@ -79,10 +79,6 @@ module.exports = {
 
     getLoggedInUser: (req, res)=>{
 
-        // const decodedJWT = jwt.decode(req.cookies.usertoken,{
-        //     complete: true
-        // })
-
         User.findOne({_id: req.jwtpayload.id})
             .then((user)=>{
                 console.log(user);
@@ -92,7 +88,19 @@ module.exports = {
                 console.log(err);
             })
 
-    }
+    },
+
+    findAllUsers: (req, res) => {
+
+        User.find()
+            .then((allUsers) => {
+                res.json(allUsers);
+            })
+            .catch((err) => {
+                console.log("Find All Users failed");
+                res.json({ message: "Something went wrong in findAll", error: err })
+            })
+    },
 
 
 

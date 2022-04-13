@@ -10,18 +10,35 @@ const Main = () => {
     const [cigarList, setCigarList] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
     const [errors, setErrors] = useState({})
+    const [user, setUser] = useState({})
     
 
     useEffect(()=>{
-        axios.get("http://localhost:8000/api/cigars")
-            .then(res=>{
+        const cigarGetting = async () =>{
+        try {
+            const res = await axios.get("http://localhost:8000/api/cigars")
+            console.log(res.data)
+            setCigarList(res.data)
+            }catch(err){
+            console.log(err)
+            }
+        } 
+        cigarGetting()
+    }, [])
+
+    useEffect(()=>{
+        const userGetter = async () =>{
+            try{
+            const res = await axios.get('http://localhost:8000/api/users',
+            { withCredentials: true })
                 console.log(res.data)
-                setCigarList(res.data)
-                
-            })
-            .catch(err=>{
+                setUser(res.data)
+                console.log(user)
+            }catch(err){
                 console.log(err)
-            })
+            }
+        }
+        userGetter() 
     }, [])
 
     const removeFromDom = (cigarId) => {
@@ -33,29 +50,31 @@ const Main = () => {
             .catch((err)=>console.log(err))
     }
 
-    const createCigar = (cigarParam) => {
-        axios
+    const createCigar = async (cigarParam) => {
+        try {
+            const res = await axios
             .post("http://localhost:8000/api/cigars", cigarParam,
                 { withCredentials: true }
             )
-            .then((res) => {
-                console.log(res);
+            console.log(res);
                 console.log(res.data)
-                
                 setCigarList([res.data, ...cigarList])
-            })
-            .catch((err) => {
-                console.log(err)
-                console.log(err.response.data)
-                console.log(err.response.data.errors)
-                setErrors(err.response.data.errors)
-            })
+        }catch(err){
+            console.log(err)
+            console.log(err.response.data)
+            console.log(err.response.data.errors)
+            setErrors(err.response.data.errors)
+        }
+        
     }
+    
     
 
     return (
         <div>
-            <NavBar setSearchTerm={setSearchTerm}/>
+            <NavBar 
+            setSearchTerm={setSearchTerm}
+            />
 
             <div className='mainContainer'>
             
@@ -69,12 +88,13 @@ const Main = () => {
                 initialRating=''
                 errors={errors}
             />
+            
             <hr/>
             <AllCigars 
                 cigarList={cigarList}
                 removeFromDom={removeFromDom}
                 searchTerm={searchTerm}
-                
+                user={user}
             />
             
             </div>

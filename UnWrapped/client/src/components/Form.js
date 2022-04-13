@@ -67,20 +67,6 @@ const Form = (props) => {
         <form onSubmit={handleSubmit}>
             <div className="cigarLabel">
             <div>
-                <label>Cigar Name</label>
-                <input
-                value={cigarName}
-                type="text"
-                onChange={(e) => setCigarName(e.target.value)}
-                name="cigarName"
-                />
-                {
-                    errors.cigarName?
-                    <span className='errorMessage'>{errors.cigarName.message}</span>
-                    :null
-                }
-            </div>
-            <div>
                 <label>Brand</label>
                 <input
                 value={brand}
@@ -91,6 +77,20 @@ const Form = (props) => {
                 {
                     errors.brand?
                     <span className='errorMessage'>{errors.brand.message}</span>
+                    :null
+                }
+            </div>
+            <div>
+                <label>Cigar Name</label>
+                <input
+                value={cigarName}
+                type="text"
+                onChange={(e) => setCigarName(e.target.value)}
+                name="cigarName"
+                />
+                {
+                    errors.cigarName?
+                    <span className='errorMessage'>{errors.cigarName.message}</span>
                     :null
                 }
             </div>
@@ -111,11 +111,11 @@ const Form = (props) => {
             <label >Image</label>
             <div className='fileInputContainer'>
             <input type="file" onChange={(e) => setImage(e.target.files)} name="image" id='file' ref={ref} />
-                {/* {
+                {
                     image === null?
                     <span className='imgWarning'>You must include a picture</span>
                     :null
-                } */}
+                }
             </div>
             <div>
             <select name="rating" value={rating} onChange={(e) => setRating(e.target.value)}>
