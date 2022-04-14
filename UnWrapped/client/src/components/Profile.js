@@ -24,6 +24,20 @@ const Profile = (props) => {
         userCigarGetter()
     }, [])
 
+    // const deleteOneCigar = (idFromBelow)=>{
+    //     axios.delete(`http://localhost:8000/api/cigars/${id}`,
+    //     { withCredentials: true,
+    //         credentials: "include" }
+    //     )
+    //     .then((res)=>{
+    //         console.log(res)
+    //         setUserCigarList(userCigarList.filter(cigar => cigar._id !== idFromBelow))
+    //     })
+    //     .catch((err)=>{
+    //         console.log(err)
+    //     })
+    // }
+
     
 
 
@@ -45,6 +59,7 @@ const Profile = (props) => {
                                 <p>{cigar.description}</p>
                                 <p>Rating: {cigar.rating}/5</p>
                             </div>
+                            {/* <button onClick={()=>deleteOneCigar(cigar.id)}></button> */}
                     </div>
                         
                     

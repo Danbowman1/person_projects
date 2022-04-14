@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Link , useNavigate } from 'react-router-dom'
+import Logo from '../components/Logo'
 
 const UserLogin = (props) => {
   const [email, setEmail] = useState('')
@@ -35,6 +36,7 @@ const UserLogin = (props) => {
 
   return (
     <div style={{textAlign: "center"}}>
+    <Logo/>
       <h1>Login</h1>
       <p>{errorMessage ? errorMessage : ''}</p>
       <form onSubmit={login}>

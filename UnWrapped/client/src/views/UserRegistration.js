@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import Logo from '../components/Logo'
 
 const UserRegistration = (props) => {
 
@@ -51,6 +52,7 @@ const UserRegistration = (props) => {
 
     return (
         <div style={{textAlign: 'center'}}>
+        <Logo/>
         {confirmReg ? <h4>{confirmReg}</h4> : null}
         <h1>Register</h1>
 

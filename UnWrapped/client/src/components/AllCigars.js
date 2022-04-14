@@ -6,7 +6,7 @@ const AllCigars = (props) => {
 
     
 
-    const {cigarList, removeFromDom, searchTerm, user} = props
+    const {cigarList, removeFromDom, searchTerm,} = props
     const navigate = useNavigate()
 
     return (
@@ -15,7 +15,8 @@ const AllCigars = (props) => {
                 cigarList.filter((val)=>{
                     if(searchTerm === ''){
                         return val
-                    } else if (val.cigarName.toLowerCase().includes(searchTerm.toLowerCase()) || val.brand.toLowerCase().includes(searchTerm.toLowerCase())){
+                    } else if (val.cigarName.toLowerCase().includes(searchTerm.toLowerCase()) || val.brand.toLowerCase().includes(searchTerm.toLowerCase()) || val.createdBy.username.toLowerCase().includes(searchTerm.toLowerCase())
+                    ){
                         return val
                     }
                 })
@@ -30,7 +31,7 @@ const AllCigars = (props) => {
                         </div>
                             <img src={cigar.image} alt="Cigar" className='cigarImg' />
                             <div className="cigarReview">
-                                <p>{cigar.description}</p>
+                                <p className='description'>{cigar.description}</p>
                                 <p>Rating: {cigar.rating}/5</p>
                             </div>
                             <div className="singleCigarBottom">
@@ -38,7 +39,7 @@ const AllCigars = (props) => {
                                 <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
                                 <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
                                 </div> 
-                                <p>Posted By: <Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link></p>
+                                <p className='profileLink'>Posted By:<Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link></p>
                             </div>
                         
                     </div>

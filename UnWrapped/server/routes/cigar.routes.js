@@ -7,7 +7,7 @@ module.exports = (app) => {
     app.post('/api/cigars', authenticate, CigarController.createNewCigar)
     app.get('/api/cigars', CigarController.findAllCigars)
     app.get('/api/cigars/:id', CigarController.findOneCigar)
-    app.delete('/api/cigars/:id', CigarController.deleteCigar)
+    app.delete('/api/cigars/:id', authenticate, CigarController.deleteCigar)
     app.put('/api/cigars/:id', CigarController.updateCigar)
     app.get('/api/cigarsbyuser/:username', authenticate, CigarController.findAllCigarsByUser)
 }

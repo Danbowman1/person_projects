@@ -7,10 +7,12 @@ body {
   flex-direction: column;
   margin: 0 auto;
   width: 50%;
+  min-width: 360px;
 }
 
 /* Navbar */
 header {
+  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,6 +37,29 @@ header {
 
 .navLinks a {
   padding: 0 40px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navLinks button {
+  padding: 8px;
+  background-color: rgba(213, 118, 16, 0.858);
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.navLinks button:hover{
+  padding: 8px;
+  background-color: rgba(213, 118, 16, 0.591);
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
 /* Form Styling */
@@ -55,6 +80,7 @@ input[type="text"] {
   display: flex;
   border-radius: 6px;
   border: 1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .description {
@@ -70,11 +96,13 @@ input[type="text"] {
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 6px;
   border: 1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .formContainer select {
   border-radius: 6px;
   border: 1px solid lightgray;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .fileInputContainer {
@@ -84,8 +112,10 @@ input[type="text"] {
 
 input[type="file"] {
   width: 200px;
+  margin-bottom: 6px;
   border: none;
   padding: 6px 0;
+  
 }
 
 button {
@@ -123,6 +153,7 @@ select {
 
 .imgWarning {
   padding: 6px;
+  margin-bottom: 6px;
   font-size: small;
   color: rgb(221, 114, 0);
 }
@@ -154,12 +185,17 @@ hr {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
+.description {
+  min-height: 100px;
+}
+
 .cigarHeader {
   width: 100%;
 }
 
 .cigarImg {
   width: 260px;
+  border-radius: 6px;
 }
 
 .displayContainer p {
@@ -171,7 +207,16 @@ hr {
   display: flex;
 }
 
+.profileLink {
+  display: flex;
+  justify-content: center;
+}
 
+.profileLink a {
+  margin-left: 6px;
+  text-decoration: none;
+  color: black;
+}
 
 .oneCigarLink {
   color: black;
@@ -199,6 +244,7 @@ hr {
 
 .commentTextarea {
   width: 100%;
+  min-width: 260px;
   height: 200px;
   padding: 6px;
   border: 1px solid lightgray;
@@ -213,6 +259,7 @@ hr {
 }
 
 .singleComment {
+  min-width: 260px;
   margin: 20px 0;
   padding: 10px;
   display: flex;
@@ -235,6 +282,7 @@ hr {
   display: flex;
   flex-direction: column;
 }
+
 
 /* Profile */
 .profileContainer {

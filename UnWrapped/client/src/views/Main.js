@@ -10,7 +10,8 @@ const Main = () => {
     const [cigarList, setCigarList] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
     const [errors, setErrors] = useState({})
-    const [user, setUser] = useState({})
+    
+    
     
 
     useEffect(()=>{
@@ -19,6 +20,7 @@ const Main = () => {
             const res = await axios.get("http://localhost:8000/api/cigars")
             console.log(res.data)
             setCigarList(res.data)
+            
             }catch(err){
             console.log(err)
             }
@@ -26,23 +28,26 @@ const Main = () => {
         cigarGetting()
     }, [])
 
-    useEffect(()=>{
-        const userGetter = async () =>{
-            try{
-            const res = await axios.get('http://localhost:8000/api/users',
-            { withCredentials: true })
-                console.log(res.data)
-                setUser(res.data)
-                console.log(user)
-            }catch(err){
-                console.log(err)
-            }
-        }
-        userGetter() 
-    }, [])
+    // useEffect(()=>{
+    //     const userGetter = async () =>{
+    //         try{
+    //         const res = await axios.get('http://localhost:8000/api/users',
+    //         { withCredentials: true,
+    //             credentials: "include" })
+    //             console.log(res.data)
+    //             setUser(res.data)
+    //             console.log(user)
+    //         }catch(err){
+    //             console.log(err)
+    //         }
+    //     }
+    //     userGetter() 
+    // }, [])
 
     const removeFromDom = (cigarId) => {
-        axios.delete(`http://localhost:8000/api/cigars/${cigarId}`)
+        axios.delete(`http://localhost:8000/api/cigars/${cigarId}`,
+        { withCredentials: true }
+        )
             .then((res)=>{
                 console.log(res.data)
                 setCigarList(cigarList.filter((cigar, index)=>cigar._id !== cigarId))
@@ -59,7 +64,7 @@ const Main = () => {
             console.log(res);
                 console.log(res.data)
                 setCigarList([res.data, ...cigarList])
-        }catch(err){
+            }catch(err){
             console.log(err)
             console.log(err.response.data)
             console.log(err.response.data.errors)
@@ -74,10 +79,10 @@ const Main = () => {
         <div>
             <NavBar 
             setSearchTerm={setSearchTerm}
+            
             />
 
             <div className='mainContainer'>
-            
             
             <Form 
                 onSubmitProp={createCigar}
@@ -88,13 +93,14 @@ const Main = () => {
                 initialRating=''
                 errors={errors}
             />
+
             
             <hr/>
-            <AllCigars 
+                <AllCigars 
                 cigarList={cigarList}
                 removeFromDom={removeFromDom}
                 searchTerm={searchTerm}
-                user={user}
+                
             />
             
             </div>

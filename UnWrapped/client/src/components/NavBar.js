@@ -18,8 +18,8 @@ const Header = (props) => {
             const res = await axios.get('http://localhost:8000/api/users',
             { withCredentials: true })
                 console.log(res.data)
-                setUser(res.data)
-                console.log(user)
+                await setUser(res.data)
+                
             }catch(err){
                 console.log(err)
             }
