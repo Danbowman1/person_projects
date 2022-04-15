@@ -10,23 +10,25 @@ const Main = () => {
     const [cigarList, setCigarList] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
     const [errors, setErrors] = useState({})
+    const [num, setNum] = useState(0)
     
     
-    
-
     useEffect(()=>{
+        
         const cigarGetting = async () =>{
         try {
             const res = await axios.get("http://localhost:8000/api/cigars")
             console.log(res.data)
             setCigarList(res.data)
-            
+            setNum(0)
             }catch(err){
             console.log(err)
             }
         } 
         cigarGetting()
-    }, [])
+
+    }, [num])
+
 
     // useEffect(()=>{
     //     const userGetter = async () =>{
@@ -44,7 +46,7 @@ const Main = () => {
     //     userGetter() 
     // }, [])
 
-    const removeFromDom = (cigarId) => {
+    const removeFromDom = (cigarId, num) => {
         axios.delete(`http://localhost:8000/api/cigars/${cigarId}`,
         { withCredentials: true }
         )
@@ -92,6 +94,8 @@ const Main = () => {
                 initialImage=''
                 initialRating=''
                 errors={errors}
+                setNum={setNum}
+                num={num}
             />
 
             

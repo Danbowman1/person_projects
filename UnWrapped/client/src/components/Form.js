@@ -11,6 +11,8 @@ const Form = (props) => {
     initialRating,
     onSubmitProp,
     errors,
+    setNum,
+    num
     } = props;
     const ref = useRef()
     const [cigarName, setCigarName] = useState(initialCigarName);
@@ -40,9 +42,11 @@ const Form = (props) => {
         setDescription('')
         ref.current.value = null
         setRating('')
+        setNum(num+1)
       // Logs data:<type>;base64,wL2dvYWwgbW9yZ...
     };
     reader.readAsDataURL(file);
+
     reader.onload = () => {
       //   axios
       //     .post('http://localhost:8000/api/cigars', {

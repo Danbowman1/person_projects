@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar'
 
 const Profile = (props) => {
 
-    const {username} = useParams()
+    const {username, id} = useParams()
     const [userCigarList, setUserCigarList] = useState([])
 
     useEffect(()=>{
@@ -59,7 +59,7 @@ const Profile = (props) => {
                                 <p>{cigar.description}</p>
                                 <p>Rating: {cigar.rating}/5</p>
                             </div>
-                            {/* <button onClick={()=>deleteOneCigar(cigar.id)}></button> */}
+                            
                     </div>
                         
                     

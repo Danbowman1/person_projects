@@ -83,7 +83,7 @@ module.exports = {
             Cigar.find({createdBy: userNotLoggedIn._id})
               .populate("createdBy", "username")
               .then((allCigarsFromUser)=>{
-                console.log(allCigarsFromUser)
+                // console.log(allCigarsFromUser)
                 res.json(allCigarsFromUser)
               })
         })
@@ -97,7 +97,7 @@ module.exports = {
       Cigar.find({createdBy: req.jwtpayload.id})
         .populate("createdBy", " username")
         .then((allCigarsFromLoggedInUser)=>{
-          console.log(allCigarsFromLoggedInUser)
+          // console.log(allCigarsFromLoggedInUser)
           res.json(allCigarsFromLoggedInUser)
         })
         .catch((err)=>{
