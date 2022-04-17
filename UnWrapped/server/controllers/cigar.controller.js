@@ -3,7 +3,7 @@ const User = require('../models/user.model')
 const multer = require('multer');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
-const cigarRoutes = require('../routes/cigar.routes');
+
 
 module.exports = {
   findAllCigars: (req, res) => {
