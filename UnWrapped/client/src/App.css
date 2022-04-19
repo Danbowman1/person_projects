@@ -47,7 +47,7 @@ header {
 
 .navLinks button {
   padding: 8px;
-  background-color: rgba(213, 118, 16, 0.858);
+  background-color: rgba(214, 128, 36, 0.858);
   color: white;
   border-radius: 6px;
   border: none;
@@ -57,7 +57,7 @@ header {
 
 .navLinks button:hover{
   padding: 8px;
-  background-color: rgba(213, 118, 16, 0.591);
+  background-color: rgba(214, 128, 36, 0.685);
   color: white;
   border-radius: 6px;
   border: none;
@@ -77,13 +77,15 @@ form {
   width: 100%;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
   height: 20px;
   margin: 10px 0;
+  padding: 6px;
   display: flex;
   border-radius: 6px;
   border: 1px solid lightgray;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  font-size: 16px;
 }
 
 .description {
@@ -95,6 +97,7 @@ input[type="text"] {
   width: 40%;
   height: 120px;
   margin: 10px 0;
+  padding: 6px;
   min-width: 320px;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 6px;
@@ -276,6 +279,30 @@ hr {
 .likeBtn {
   width: 80px;
 }
+
+/* Edit Page */
+
+.editContainer, .editContainer form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.editContainer .cigarLabel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.editContainer textarea {
+  width: 100%;
+  min-width: 410px;
+  
+}
+
+
 
 /* Login/Registration */
 

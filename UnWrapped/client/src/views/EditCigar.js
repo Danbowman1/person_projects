@@ -46,8 +46,8 @@ const EditCigar = () => {
     <div>
       <NavBar />
       {loaded &&
-        <div className='mainContainer'>
-        <Form
+        <div className='editContainer'>
+        <Form 
         onSubmitProp={editSubmitHandler}
         initialCigarName={cigar.cigarName}
         initialBrand={cigar.brand}
@@ -56,7 +56,18 @@ const EditCigar = () => {
         initialRating={cigar.rating}
         errors={errors}
       />
-
+        <hr />
+        <div  className="singleCigar">
+          <div className='cigarHeader'>
+              <h2>{cigar.cigarName}</h2>
+              <p>{cigar.brand}</p>
+            </div>
+                <img src={cigar.image} alt="Cigar" className='cigarImg' />
+              <div className="cigarReview">
+                  <p>{cigar.description}</p>
+                  <p>Rating: {cigar.rating}/5</p>
+              </div>
+          </div>
         </div>
       }
     </div>

@@ -83,7 +83,7 @@ const UserRegistration = (props) => {
                 <span>{errors.password.message}</span>
             ) : null}
                 <input 
-                type="text" 
+                type="password" 
                 name="password" 
                 value={user.password}
                 onChange={handleChange}
@@ -93,7 +93,7 @@ const UserRegistration = (props) => {
                 <span>{errors.confirmPassword.message}</span>
             ) : null}
                 <input 
-                type="text" 
+                type="password" 
                 name="confirmPassword" 
                 value={user.confirmPassword}
                 onChange={handleChange} 

@@ -49,6 +49,7 @@ module.exports = {
             req.body,
             { new: true, runValidators: true }
         )
+        
         .populate("associatedCigar", "cigarName brand")
         .then((likeAdded)=>{
             res.json(likeAdded)
@@ -57,5 +58,6 @@ module.exports = {
             res.status(400).json(err)
         })
     }
+    
 
 }

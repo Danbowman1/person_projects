@@ -50,11 +50,12 @@ const UserLogin = (props) => {
           />
           <label>Password</label>
           <input 
-          type="text"
+          type="password"
           name='password'
           value={password}
           onChange={(e)=> setPassword(e.target.value)}
           />
+          
         </div>
         <button style={{marginBottom: "16px"}}>Sign In</button>
       </form>
