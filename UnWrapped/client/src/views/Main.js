@@ -9,6 +9,7 @@ const Main = () => {
 
     const [cigarList, setCigarList] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
+    const [user, setUser] = useState({})
     const [errors, setErrors] = useState({})
     const [num, setNum] = useState(0)
     
@@ -30,21 +31,21 @@ const Main = () => {
     }, [num])
 
 
-    // useEffect(()=>{
-    //     const userGetter = async () =>{
-    //         try{
-    //         const res = await axios.get('http://localhost:8000/api/users',
-    //         { withCredentials: true,
-    //             credentials: "include" })
-    //             console.log(res.data)
-    //             setUser(res.data)
-    //             console.log(user)
-    //         }catch(err){
-    //             console.log(err)
-    //         }
-    //     }
-    //     userGetter() 
-    // }, [])
+    useEffect(()=>{
+        const userGetter = async () =>{
+            try{
+            const res = await axios.get('http://localhost:8000/api/users',
+            { withCredentials: true,
+                credentials: "include" })
+                console.log(res.data)
+                setUser(res.data)
+                console.log(user)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        userGetter() 
+    }, [])
 
     const removeFromDom = (cigarId, num) => {
         axios.delete(`http://localhost:8000/api/cigars/${cigarId}`,
@@ -104,7 +105,7 @@ const Main = () => {
                 cigarList={cigarList}
                 removeFromDom={removeFromDom}
                 searchTerm={searchTerm}
-                
+                user={user}
             />
             
             </div>

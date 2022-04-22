@@ -6,7 +6,7 @@ const AllCigars = (props) => {
 
     
 
-    const {cigarList, removeFromDom, searchTerm,} = props
+    const {cigarList, removeFromDom, searchTerm, user} = props
     const navigate = useNavigate()
 
     return (
@@ -35,10 +35,12 @@ const AllCigars = (props) => {
                                 <p>Rating: {cigar.rating}/5</p>
                             </div>
                             <div className="singleCigarBottom">
+                                {cigar.createdBy?.username === user.username &&
                                 <div className='displayBtnContainer'>
                                 <DeleteBtn deleteCallBack={()=>removeFromDom(cigar._id)}/>
                                 <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
                                 </div> 
+                                }
                                 <p className='profileLink'>Posted By:<Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link></p>
                             </div>
                         

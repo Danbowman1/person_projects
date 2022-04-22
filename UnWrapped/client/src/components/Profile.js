@@ -1,12 +1,14 @@
 import axios from 'axios'
 import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 
 const Profile = (props) => {
 
-    const {username, id} = useParams()
+    const {username} = useParams()
+    const [user, setUser] = useState({})
     const [userCigarList, setUserCigarList] = useState([])
+    const navigate = useNavigate()
 
     useEffect(()=>{
         const userCigarGetter = async () =>{
@@ -24,21 +26,36 @@ const Profile = (props) => {
         userCigarGetter()
     }, [])
 
-    // const deleteOneCigar = (idFromBelow)=>{
-    //     axios.delete(`http://localhost:8000/api/cigars/${id}`,
-    //     { withCredentials: true,
-    //         credentials: "include" }
-    //     )
-    //     .then((res)=>{
-    //         console.log(res)
-    //         setUserCigarList(userCigarList.filter(cigar => cigar._id !== idFromBelow))
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err)
-    //     })
-    // }
+    const deleteCigar = (idFromBelow) => {
+        axios.delete(`http://localhost:8000/api/cigars/${idFromBelow}`,
+        {withCredentials: true}
+        )
+            .then((res)=>{
+                console.log(res.data)
+                const newList = userCigarList.filter(cigars => cigars._id !== idFromBelow)
+                setUserCigarList(newList)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+    }
 
-    
+    useEffect(()=>{
+        const userGetter = async () =>{
+            try{
+            const res = await axios.get('http://localhost:8000/api/users',
+            { withCredentials: true,
+                credentials: "include" })
+                console.log(res.data)
+                setUser(res.data)
+                console.log(user)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        userGetter() 
+    }, [])
+
 
 
     return (
@@ -59,6 +76,12 @@ const Profile = (props) => {
                                 <p>{cigar.description}</p>
                                 <p>Rating: {cigar.rating}/5</p>
                             </div>
+                            {cigar.createdBy?.username === user.username &&
+                            <div>
+                            <button onClick={()=>{deleteCigar(cigar._id)}}>Delete</button>
+                            <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit</button>
+                            </div>
+                            }
                             
                     </div>
                         
