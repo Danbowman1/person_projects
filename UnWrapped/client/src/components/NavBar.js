@@ -1,6 +1,9 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, } from '@mui/material'
+import Logout from '@mui/icons-material/Logout';
+import Settings from '@mui/icons-material/Settings';
 
 
 
@@ -10,6 +13,8 @@ const Header = (props) => {
 
     const {setSearchTerm} = props
     const [user, setUser] = useState({})
+    const [anchorEl, setAnchorEl] = useState(null)
+    const open = Boolean(anchorEl);
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -41,6 +46,23 @@ const Header = (props) => {
         })
     }
 
+    const avatarHandler = (e) => {
+        setAnchorEl(e.currentTarget)
+        // console.log(e.currentTarget)
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
+    const profileHandler = () => {
+        navigate(`/user/profile/${user.username}`)
+    }
+    const editProfileHandler = () => {
+        navigate(`/user/edit/profile/${user.username}`)
+    }
+    
+
     return (
         <header>
             <Link to={"/home"} >
@@ -54,10 +76,74 @@ const Header = (props) => {
                 </form>
             </div>
                 
-                <div className="navLinks">
+                {/* <div className="navLinks">
                     <Link to={`/user/profile/${user.username}`}>Your Profile</Link>
                     <button className='logoutBtn' onClick={logout}>Logout</button>
-                </div>
+                </div> */}
+                <Tooltip title='Account settings'>
+                    <IconButton
+                    onClick={avatarHandler}
+                    size='small'
+                    sx={{ml: 2}}
+                    aria-controls={open ? 'account-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    >
+                    <Avatar sx={{width: 36, height: 36}}></Avatar>
+                    </IconButton>
+                </Tooltip>
+                <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                PaperProps={{
+                elevation: 0,
+                sx: {
+                    overflow: 'visible',
+                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                    mt: 1.5,
+                '& .MuiAvatar-root': {
+                    width: 32,
+                    height: 32,
+                    ml: -0.5,
+                    mr: 1,
+                },
+                '&:before': {
+                    content: '""',
+                    display: 'block',
+                    position: 'absolute',
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: 'background.paper',
+                    transform: 'translateY(-50%) rotate(45deg)',
+                    zIndex: 0,
+                },
+            },
+        }}
+        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
+            <MenuItem onClick={profileHandler}>
+                <Avatar/> Profile
+            </MenuItem>
+            <MenuItem onClick={editProfileHandler}>
+                <ListItemIcon >
+                    <Settings fontSize='small' />
+                </ListItemIcon>
+                Edit Profile
+            </MenuItem>
+            <Divider />
+            <MenuItem onClick={logout}>
+                <ListItemIcon>
+                    <Logout fontSize='small'/>
+                </ListItemIcon>
+                Logout
+            </MenuItem>
+        </Menu>
                 
 
         </header>

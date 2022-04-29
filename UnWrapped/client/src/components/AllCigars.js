@@ -9,6 +9,9 @@ const AllCigars = (props) => {
     const {cigarList, removeFromDom, searchTerm, user} = props
     const navigate = useNavigate()
 
+
+    
+
     return (
         <div className='displayContainer'>
             {

@@ -27,7 +27,7 @@ module.exports = {
         User.findOne({email: req.body.email})
         .then((userRecord)=>{
             if(userRecord === null){
-                res.staus(400).json({message: "Invalid Login Attempt"})
+                res.status(400).json({message: "Invalid Login Attempt"})
             } else {
                 bcrypt.compare(req.body.password, userRecord.password)
                     .then((isPasswordValid)=>{
@@ -102,7 +102,19 @@ module.exports = {
             })
     },
 
-
+    updateUser: (req, res) => {
+        User.findOneAndUpdate({username: req.params.username},
+            req.body,
+            {new: true, runValidators: true})
+                .then((updatedUser)=> {
+                    console.log(updatedUser)
+                    res.json(updatedUser)
+                })
+                .catch((err)=>{
+                    console.log(err)
+                    res.status(400).json(err)
+                })
+    },
 
 
 
