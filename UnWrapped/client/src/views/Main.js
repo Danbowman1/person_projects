@@ -39,7 +39,7 @@ const Main = () => {
                 credentials: "include" })
                 console.log(res.data)
                 setUser(res.data)
-                console.log(user)
+                console.log(res.data)
             }catch(err){
                 console.log(err)
             }

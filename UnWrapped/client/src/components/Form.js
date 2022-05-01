@@ -27,7 +27,7 @@ const Form = (props) => {
         console.log('FILE', file);
         const reader = new FileReader();
         reader.onloadend = () => {
-        console.log(reader.result);
+        // console.log(reader.result);
         const imageData = reader.result;
         const cigar = {
             cigarName,
