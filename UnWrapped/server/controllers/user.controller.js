@@ -103,6 +103,7 @@ module.exports = {
     },
 
     updateUser: (req, res) => {
+        
         User.findOneAndUpdate({username: req.params.username},
             req.body,
             {new: true, runValidators: true})

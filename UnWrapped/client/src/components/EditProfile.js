@@ -11,6 +11,11 @@ const EditProfile = () => {
 
 const {username} = useParams()
 
+const [fileInputState, setFileInputState] = useState('');
+const [previewSource, setPreviewSource] = useState('');
+const [selectedFile, setSelectedFile] = useState();
+const [successMsg, setSuccessMsg] = useState('');
+const [errMsg, setErrMsg] = useState('');
 const  [usersname, setUsersname ] = useState('')
 const [email, setEmail] = useState('')
 const [ image, setImage ] = useState('')
@@ -19,6 +24,8 @@ const navigate = useNavigate()
 const Input = styled('input')({
     display: 'none',
 });
+
+
 
 useEffect(()=> {
 
@@ -39,27 +46,72 @@ useEffect(()=> {
     userGetter()
 }, [])
 
-// const editUser = () =>{
-//     axios.put(`http://localhost:8000/api/users/editprofile/${username}`)
-//         .then((res)=>{
-//             navigate('/')
-//         })    
-//         .catch((error)=>{
-//             console.log(error)
-//         }) 
-//     }
 
-    const postDetails = ()=>{
-        const data = new FormData()
-        data.append('file', image)
-        data.append('upload_preset', "cigar-user")
+
+const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+    setSelectedFile(file);
+    setFileInputState(e.target.value);
+    
+};
+
+const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+        setPreviewSource(reader.result);
+    };
+};
+
+const handleSubmitFile = async (e) => {
+    e.preventDefault();
+    if (!selectedFile) return;
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onloadend = () => {
+        uploadImage(reader.result)
+        
+    };
+    reader.onerror = () => {
+        console.error('AHHHHHHHH!!');
+        setErrMsg('something went wrong!');
+    };
+    await axios.put(`http://localhost:8000/api/users/editprofile/${username}`,
+    {withCredentials: true},
+    {
+        username,
+        email,
+        
     }
+    )
+    
+};
+
+const uploadImage = async (base64EncodedImage) => {
+    try {
+        
+    await fetch('http://localhost:8000/api/upload/user/image', {
+            method: 'POST',
+            body: JSON.stringify({ data: base64EncodedImage }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+        
+        setFileInputState('');
+        setPreviewSource('');
+        setSuccessMsg('Image uploaded successfully');
+    } catch (err) {
+        console.error(err);
+        setErrMsg('Something went wrong!');
+    }
+};
 
     return (
         <div>
             <NavBar />
-                <Box sx={{width: 400, height: 400, boxShadow: 1, m: ' auto'}}>
-                    <form style={{width:'80%', height:'300px', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', margin: '0 auto'}}>
+            
+                <Box sx={{width: 400, height: 400, padding:'30px' ,boxShadow: 1, m: '40px auto'}}>
+                    <form style={{width:'80%', height:'300px', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', margin: '0 auto'}} onSubmit={handleSubmitFile}>
                         <TextField
                         variant='outlined'
                         label='Username'
@@ -74,13 +126,21 @@ useEffect(()=> {
                         size='small'
                         onChange={(e)=>setEmail(e.target.value)}
                         />
+                        <Box>
                         <label htmlFor="icon-button-file">
-                        <Input accept="image/*" id="icon-button-file" type="file" onChange={(e)=>setImage(e.target.files[0])}/>
-                        <IconButton color="primary" aria-label="upload picture" component="span">
+                        <Input accept="image/*" id="icon-button-file" type="file" onChange={handleFileInputChange}/>
+                        <IconButton color="primary" aria-label="upload picture" component="span" >
                         <PhotoCamera />
                         </IconButton>
                         </label>
-                        <Button>Submit</Button>
+                        {previewSource && (
+                        <img
+                            src={previewSource}
+                            alt="chosen"
+                            style={{ width: '70px', marginLeft:'40px' }}
+                        />)}
+                        </Box>
+                        <Button type='submit' >Submit</Button>
                     </form> 
                 </Box>
         </div>

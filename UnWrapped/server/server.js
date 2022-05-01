@@ -19,6 +19,7 @@ require('./config/mongoose.config');
 require('./routes/cigar.routes')(app);
 require('./routes/message.routes')(app);
 require('./routes/user.routes')(app);
+require('./middleware/cloudinary.middleware')(app)
 
 const port = process.env.MY_PORT;
 
