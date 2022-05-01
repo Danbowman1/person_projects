@@ -4,6 +4,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const app = express();
 const socket = require('socket.io')
+const cloudinary = require('cloudinary').v2
 
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
