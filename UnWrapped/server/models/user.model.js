@@ -18,9 +18,6 @@ const UserSchema = new mongoose.Schema({
         minlength: [8, "Password must be at least 8 characters"]
     },
 
-    img: {
-        type: String,
-    }
 }, {timestamps: true})
 
 UserSchema.virtual("confirmPassword")

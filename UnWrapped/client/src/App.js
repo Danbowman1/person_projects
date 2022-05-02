@@ -34,7 +34,7 @@ function App() {
         <Route path='/cigar/edit/:id' element={<EditCigar/>} />
         <Route path='/cigar/:id' element={<OneCigar socket={socket}/>} />
         <Route path='/user/profile/:username' element={<Profile/>} />
-        <Route path='/user/edit/profile/:username' element={<EditProfile/>} />
+        <Route path='/user/edit/profile/:id' element={<EditProfile/>} />
       </Routes>
     </div>
     </BrowserRouter>
