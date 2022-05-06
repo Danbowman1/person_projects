@@ -1,0 +1,21 @@
+.formStyle {
+    width: 50%;
+    min-width: 220px;
+    height: 20rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+}
+
+.cigarLabel {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: column;
+    margin: .4rem;
+}
+

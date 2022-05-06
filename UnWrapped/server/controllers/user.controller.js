@@ -104,7 +104,7 @@ module.exports = {
 
     updateUser: (req, res) => {
         
-        User.findOneAndUpdate({_id: req.params.id},
+        User.findOneAndUpdate({username: req.params.username},
             req.body,
             {new: true, runValidators: true})
                 .then((updatedUser)=> {

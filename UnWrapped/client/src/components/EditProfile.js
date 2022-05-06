@@ -6,10 +6,10 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 const EditProfile = () => {
 
-const {id} = useParams()
+const {username} = useParams()
 
 
-const  [username, setUsername ] = useState('')
+const  [usersname, setUsersname ] = useState('')
 const [email, setEmail] = useState('')
 const [ password, setPassword ] = useState('')
 const navigate = useNavigate()
@@ -27,9 +27,10 @@ useEffect(()=> {
             }
             )
             console.log(res.data)
-            setUsername(res.data.username)
+            setUsersname(res.data.username)
             setEmail(res.data.email)
             setPassword(res.data.password)
+            console.log(res.data._id)
         } catch (error) {
             console.log(error)
         }
@@ -39,9 +40,10 @@ useEffect(()=> {
 
 const submitHandler = (e) => {
     e.preventDefault()
-    axios.put(`http://localhost:8000/api/users/editprofile/${id}`,
+    axios.put(`http://localhost:8000/api/users/editprofile/${username}`,
+    {withCredentials:true},
     {
-        username: username, 
+        username: usersname, 
         email: email,
         password: password
     })
@@ -64,9 +66,9 @@ const submitHandler = (e) => {
                         <TextField
                         variant='outlined'
                         label='Username'
-                        value={username}
+                        value={usersname}
                         size='small'
-                        onChange={(e)=>setUsername(e.target.value)}
+                        onChange={(e)=>setUsersname(e.target.value)}
                         />
                         <TextField
                         variant='outlined'

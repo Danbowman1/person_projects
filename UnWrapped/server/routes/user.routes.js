@@ -6,6 +6,6 @@ module.exports = (app)=>{
     app.post("/api/users/register", UserController.register)
     app.post("/api/users/login", UserController.login)
     app.post("/api/users/logout", UserController.logout)
-    app.put("/api/users/editprofile/:id", UserController.updateUser)
-    app.get("/api/users",authenticate, UserController.getLoggedInUser)
+    app.put("/api/users/editprofile/:username", authenticate, UserController.updateUser)
+    app.get("/api/users", authenticate, UserController.getLoggedInUser)
 }
