@@ -5,7 +5,7 @@ import CigarCard from './CigarCard'
 
 const AllCigars = (props) => {
 
-    const { cigarList, setCigarList } = props
+    const { cigarList, setCigarList, searchTerm } = props
     
 
     useEffect(() => {
@@ -29,7 +29,15 @@ const AllCigars = (props) => {
         <div style={{display:'flex', flexDirection:'row', flexWrap:'wrap', justifyContent:'center', padding:'10px'}}>
             
             { 
-                cigarList.map(cigar => (
+                cigarList.filter((val)=>{
+                    if(searchTerm === ''){
+                        return val
+                    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase()) || val.brand.toLowerCase().includes(searchTerm.toLowerCase()) 
+                    ){
+                        return val
+                    }
+                })
+                .map(cigar => (
                     <CigarCard 
                     brand={cigar.brand} 
                     name={cigar.name} 

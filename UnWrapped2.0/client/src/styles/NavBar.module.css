@@ -1,0 +1,39 @@
+.container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #9aab89d1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+h1 {
+    
+    font-size: 1.75rem;
+    color: white;
+    
+}
+
+input[type=search] {
+    height: 40px;
+    padding: 2px 6px;
+    margin: 0 32px;
+    font-size: 16px;
+    flex: 0 1 600px;
+    border-radius: 8px;
+    border: 1px solid rgb(203 213 225);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.816);
+}
+
+.menu {
+    margin-right: 40px;
+    border: none;
+    background-color: transparent;
+}

@@ -6,24 +6,28 @@ import NavBar from '../components/NavBar'
 const Main = () => {
 
     const [cigarList, setCigarList] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')
 
     
 
     return (
-        <div style={{width:'75%', margin:'0 auto'}}>
+        
+        <div >
+            <NavBar setSearchTerm={setSearchTerm}/>
+            <div style={{width:'75%', margin:'0 auto'}}>
+                <CigarForm 
+                cigarList={cigarList} 
+                setCigarList={setCigarList} />
 
-            <NavBar />
+                <hr style={{margin:'0'}}/>
 
-            <CigarForm 
-            cigarList={cigarList} 
-            setCigarList={setCigarList} />
-
-            <hr style={{margin:'0'}}/>
-
-            <AllCigars 
-            cigarList={cigarList} 
-            setCigarList={setCigarList}
-            />
+                <AllCigars 
+                cigarList={cigarList} 
+                setCigarList={setCigarList}
+                searchTerm={searchTerm}
+                />
+            </div>
+            
 
         </div>
     )
