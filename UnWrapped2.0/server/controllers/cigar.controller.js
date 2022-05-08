@@ -4,11 +4,11 @@ module.exports = {
 
     createCigar: (req, res) => {
         Cigar.create(req.body)
-            .then((newCigar)=>{
+            .then((newCigar) => {
                 console.log(newCigar)
                 res.json(newCigar)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err)
             })
     },
@@ -16,24 +16,49 @@ module.exports = {
     getAllCigars: (req, res) => {
         Cigar.find()
             .sort({ createdAt: -1 })
-            .then((allCigars)=>{
+            .then((allCigars) => {
                 console.log(allCigars)
                 res.json(allCigars)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err)
             })
     },
 
     getOneCigar: (req, res) => {
-        Cigar.findOne({_id: req.params.id})
-            .then((oneCigar)=>{
+        Cigar.findOne({ _id: req.params.id })
+            .then((oneCigar) => {
                 console.log(oneCigar)
                 res.json(oneCigar)
             })
-            .catch((err)=>{
+            .catch((err) => {
                 console.log(err)
             })
     },
+
+    updateCigar: (req, res) => {
+        Cigar.findOneAndUpdate({ _id: req.params.id }, 
+            req.body,
+            { new: true, runValidators: true }
+            )
+            .then((updatedCigar) => {
+                console.log(updatedCigar)
+                res.json(updatedCigar)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    },
+
+    deleteCigar: (req, res) => {
+        Cigar.deleteOne({ _id: params.id })
+        .then((deletedCigar) => {
+            console.log(deletedCigar)
+            res.json(deletedCigar)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
 
 }

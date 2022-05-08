@@ -34,7 +34,7 @@ const CigarForm = (props) => {
                             rating
                         })
                         console.log(res2.data)
-                        setCigarList([...cigarList, res2.data])
+                        setCigarList([ res2.data, ...cigarList ])
                         setBrand('')
                         setName('')
                         setDescription('')
@@ -103,7 +103,7 @@ const CigarForm = (props) => {
                     <option value="5">5</option>
                     </select>
                 </div>
-                
+                <input className={styles.inputBox} type='submit' />
             </form>  
         </div>
     )
