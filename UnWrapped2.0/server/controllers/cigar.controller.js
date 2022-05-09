@@ -51,7 +51,7 @@ module.exports = {
     },
 
     deleteCigar: (req, res) => {
-        Cigar.deleteOne({ _id: params.id })
+        Cigar.findByIdAndDelete({ _id: req.params.id })
         .then((deletedCigar) => {
             console.log(deletedCigar)
             res.json(deletedCigar)

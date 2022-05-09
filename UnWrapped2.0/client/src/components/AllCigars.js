@@ -23,7 +23,17 @@ const AllCigars = (props) => {
         getCigars()
     }, [])
 
-    
+    const deleteFilter = (idFromBelow) => {
+        axios.delete(`http://localhost:8000/api/cigars/${idFromBelow}`)
+            .then((res) => {
+                console.log(res.data)
+                setCigarList(cigarList.filter(cigar => cigar._id !== idFromBelow))
+                console.log(idFromBelow)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     return (
         <div style={{display:'flex', flexDirection:'row', flexWrap:'wrap', justifyContent:'center', padding:'10px'}}>
@@ -39,12 +49,14 @@ const AllCigars = (props) => {
                 })
                 .map(cigar => (
                     <CigarCard 
+                    deleteFilter={()=>deleteFilter(cigar._id)}
                     brand={cigar.brand} 
                     name={cigar.name} 
                     description={cigar.description} 
                     img={cigar.img} 
                     rating={cigar.rating} 
                     key={cigar._id}
+                    
                     />
                 ))
             }

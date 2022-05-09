@@ -8,11 +8,11 @@
     align-items: center;
     justify-content: space-between;
     background-color: #9aab89d1;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: var(--box-shadow);
 }
 
 h1 {
-    
+    width: 25%;
     font-size: 1.75rem;
     color: white;
     
@@ -25,16 +25,16 @@ input[type=search] {
     font-size: 16px;
     flex: 0 1 600px;
     border-radius: 8px;
-    border: 1px solid rgb(203 213 225);
+    border: var(--border);
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: var(--box-shadow);
     position: relative;
     background-color: rgba(255, 255, 255, 0.816);
 }
 
-.menu {
-    margin-right: 40px;
-    border: none;
-    background-color: transparent;
-    color: white;
+.menuContainer {
+    width: 25%;
+    margin-right: 35px;
+    text-align: end;
+    
 }
