@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Dialog, DialogTitle, IconButton, ListItemIcon, Menu, MenuItem, } from '@mui/material'
 import styles from '../styles/CigarCard.module.css'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import CigarForm from './CigarForm'
+import axios from 'axios'
 
 
 
@@ -12,11 +14,26 @@ import CigarForm from './CigarForm'
 
 const CigarCard = (props) => {
 
-    const { brand, name, description, img, rating, deleteFilter } = props
+    const { deleteFilter, id } = props
 
+    const [cigar, setCigar] = useState({})
     const [openDialog, setOpenDialog] = useState(false);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    useEffect(() => {
+        const getCigars = async () => {
+            try {
+                const res = await axios.get(`http://localhost:8000/api/cigars/${id}`)
+                setCigar(res.data)
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getCigars()
+    }, [])
+    
 
 
     const handleClickOpen = () => {
@@ -43,8 +60,8 @@ const CigarCard = (props) => {
                 <div className={styles.container}>
                     <div className={styles.cardHeader}>
                         <div className={styles.cardHeaderText}>
-                            <p>{brand}</p>
-                            <p>{name}</p>
+                            <p>{cigar.brand}</p>
+                            <p>{cigar.name}</p>
                         </div>
                         <div className={styles.cardMenu}>
                             <IconButton
@@ -82,7 +99,9 @@ const CigarCard = (props) => {
                             <Dialog 
                             PaperProps={{
                                 style: {
-                                    backgroundColor:'var(--bg)'
+                                    backgroundColor:'var(--bg)',
+                                    borderRadius:'var(--border-radius)',
+                                    padding:'10px 0'
                                     }
                             }}
                             
@@ -90,7 +109,12 @@ const CigarCard = (props) => {
                             onClose={handleCloseDialog} 
                             sx={{}}>
                             <DialogTitle style={{width:'200px', margin:'0 auto', textAlign:'center'}}>Edit Cigar</DialogTitle>
-                            <CigarForm />
+                            <CigarForm
+                            name={cigar.name}
+                            brand={cigar.brand}
+                            description={cigar.description}
+                            rating={cigar.rating}
+                            />
 
                             </Dialog>
                             
@@ -98,9 +122,9 @@ const CigarCard = (props) => {
                         </div>
                     </div>
                     
-                    <img src={img} alt="cigar" className={styles.cardImg} />
-                    <p className={styles.description}>{description}</p>
-                    <p className={styles.rating}>Rating: {rating}/5</p>
+                    <img src={cigar.img} alt="cigar" className={styles.cardImg} />
+                    <p className={styles.description}>{cigar.description}</p>
+                    <p className={styles.rating}>Rating: {cigar.rating}/5</p>
                     
                 </div>
         

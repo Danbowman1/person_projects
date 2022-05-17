@@ -50,13 +50,8 @@ const AllCigars = (props) => {
                 .map(cigar => (
                     <CigarCard 
                     deleteFilter={()=>deleteFilter(cigar._id)}
-                    brand={cigar.brand} 
-                    name={cigar.name} 
-                    description={cigar.description} 
-                    img={cigar.img} 
-                    rating={cigar.rating} 
                     key={cigar._id}
-                    
+                    id={cigar._id}
                     />
                 ))
             }

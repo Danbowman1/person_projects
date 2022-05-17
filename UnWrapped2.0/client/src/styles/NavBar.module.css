@@ -13,6 +13,7 @@
 
 h1 {
     width: 25%;
+    min-width: 175px;
     font-size: 1.75rem;
     color: white;
     
@@ -20,10 +21,11 @@ h1 {
 
 input[type=search] {
     height: 40px;
+    width: 20%;
+    min-width: 200px;
     padding: 2px 6px;
     margin: 0 32px;
     font-size: 16px;
-    flex: 0 1 600px;
     border-radius: 8px;
     border: var(--border);
     border-radius: 5px;
@@ -32,7 +34,7 @@ input[type=search] {
     background-color: rgba(255, 255, 255, 0.816);
 }
 
-.menuContainer {
+.darkMode {
     width: 25%;
     margin-right: 35px;
     text-align: end;
