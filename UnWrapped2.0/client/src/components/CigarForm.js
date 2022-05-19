@@ -10,7 +10,6 @@ const CigarForm = (props) => {
     const submitHandler = (e) => {
         e.preventDefault()
         onSubmitProp({name, brand, description, rating, image})
-        
     }
 
 

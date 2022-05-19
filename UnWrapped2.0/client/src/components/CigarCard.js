@@ -14,7 +14,7 @@ import axios from 'axios'
 
 const CigarCard = (props) => {
 
-    const { deleteFilter, id } = props
+    const { deleteFilter, id, name, setName, brand, setBrand, description, setDescription, setImage, rating, setRating, image } = props
 
     const [cigar, setCigar] = useState({})
     const [openDialog, setOpenDialog] = useState(false);
@@ -96,6 +96,7 @@ const CigarCard = (props) => {
                                 Delete Cigar
                             </MenuItem>
                             </Menu>
+
                             <Dialog 
                             PaperProps={{
                                 style: {
@@ -117,8 +118,6 @@ const CigarCard = (props) => {
                             />
 
                             </Dialog>
-                            
-
                         </div>
                     </div>
                     

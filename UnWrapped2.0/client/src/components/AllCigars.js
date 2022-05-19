@@ -25,10 +25,13 @@ const AllCigars = (props) => {
 
     const deleteFilter = (idFromBelow) => {
         axios.delete(`http://localhost:8000/api/cigars/${idFromBelow}`)
-            .then((res) => {
-                console.log(res.data)
-                setCigarList(cigarList.filter(cigar => cigar._id !== idFromBelow))
-                console.log(idFromBelow)
+        .then((res) => {
+                if(window.confirm("Are you sure you want to delete?")){
+                    console.log(res.data)
+                    setCigarList(cigarList.filter(cigar => cigar._id !== idFromBelow))
+                    console.log(idFromBelow)
+                }
+                
             })
             .catch((err) => {
                 console.log(err)
