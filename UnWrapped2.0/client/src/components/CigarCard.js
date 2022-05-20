@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { Dialog, DialogTitle, IconButton, ListItemIcon, Menu, MenuItem, } from '@mui/material'
 import styles from '../styles/CigarCard.module.css'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
@@ -9,12 +8,9 @@ import CigarForm from './CigarForm'
 import axios from 'axios'
 
 
-
-
-
 const CigarCard = (props) => {
 
-    const { deleteFilter, id, name, setName, brand, setBrand, description, setDescription, setImage, rating, setRating, image } = props
+    const { deleteFilter, id } = props
 
     const [cigar, setCigar] = useState({})
     const [openDialog, setOpenDialog] = useState(false);
@@ -33,6 +29,9 @@ const CigarCard = (props) => {
         }
         getCigars()
     }, [])
+
+
+    
     
 
 
@@ -44,7 +43,6 @@ const CigarCard = (props) => {
     setOpenDialog(false);
     };
 
-    
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -111,10 +109,10 @@ const CigarCard = (props) => {
                             sx={{}}>
                             <DialogTitle style={{width:'200px', margin:'0 auto', textAlign:'center'}}>Edit Cigar</DialogTitle>
                             <CigarForm
-                            name={cigar.name}
-                            brand={cigar.brand}
-                            description={cigar.description}
-                            rating={cigar.rating}
+                            initialBrand={cigar.brand}
+                            initialName={cigar.name}
+                            initialDescription={cigar.description}
+                            initialRating={cigar.rating}
                             />
 
                             </Dialog>

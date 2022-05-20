@@ -1,15 +1,26 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
+import MyContext from '../context/MyContext'
 import styles from '../styles/CigarForm.module.css'
 import inputStyle from '../styles/InputStyles.module.css'
 
 const CigarForm = (props) => {
 
-    const { onSubmitProp, name, setName, brand, setBrand, description, setDescription, setImage, rating, setRating, image } = props
+    const { onSubmitProp, initialBrand, initialName, initialDescription, initialRating, image } = props
+
+    const context = useContext(MyContext)
+    const [ brand, setBrand ] = useState(initialBrand)
+    const [ name, setName ] = useState(initialName)
+    const [ description, setDescription ] = useState(initialDescription)
+    const [ rating, setRating ] = useState(initialRating)
 
 
     const submitHandler = (e) => {
         e.preventDefault()
-        onSubmitProp({name, brand, description, rating, image})
+        onSubmitProp({ name, brand, description, rating })
+        setBrand('')
+        setName('')
+        setDescription('')
+        setRating('')
     }
 
 
@@ -21,7 +32,7 @@ const CigarForm = (props) => {
                         <label>Brand</label>
                         <input className={inputStyle.input}
                             onChange={(e) => setBrand(e.target.value)}
-                            value={brand}
+                            value={brand ?? ''}
                             name='brand'
                             type='text'
                         />
@@ -30,7 +41,7 @@ const CigarForm = (props) => {
                         <label>Name</label>
                         <input className={inputStyle.input}
                             onChange={(e) => setName(e.target.value)}
-                            value={name}
+                            value={name ?? ''}
                             name='name'
                             type='text'
                         />
@@ -41,7 +52,7 @@ const CigarForm = (props) => {
                 <label>Description</label>
                 <textarea className={inputStyle.textArea}
                     onChange={(e) => setDescription(e.target.value)}
-                    value={description}
+                    value={description ?? ''}
                     name='description'
                 />
                 </div>
@@ -50,14 +61,14 @@ const CigarForm = (props) => {
                 <div className={styles.inputBox}>
                     <label>Image</label>
                     <input className={inputStyle.file}
-                        onChange={(e)=>setImage(e.target.files[0])}
+                        onChange={(e)=>context.setImage(e.target.files[0])}
                         name='image'
                         type='file'
                         ref={image}
                     />
                 </div>
                 <div className={styles.inputBox}>
-                    <select name="rating" value={rating} onChange={(e) => setRating(e.target.value)} className={inputStyle.rating}>
+                    <select name="rating" value={rating ?? ''} onChange={(e) => setRating(e.target.value)} className={inputStyle.rating}>
                     <option value="none" defaultValue hidden>
                     Select a Rating
                     </option>

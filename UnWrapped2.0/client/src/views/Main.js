@@ -1,44 +1,48 @@
 import axios from 'axios'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import AllCigars from '../components/AllCigars'
 import CigarForm from '../components/CigarForm'
 import NavBar from '../components/NavBar'
+import MyContext from '../context/MyContext'
 
 
 const Main = () => {
 
     const [cigarList, setCigarList] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
-    const ref = useRef()
-    const [ brand, setBrand ] = useState('')
-    const [ name, setName ] = useState('')
-    const [ description, setDescription ] = useState('')
-    const [ image, setImage ] = useState('')
-    const [ rating, setRating ] = useState('')
 
-    const createCigar = async () => {
+    const context = useContext(MyContext)
+    const ref = useRef()
+    // const [ brand, setBrand ] = useState('')
+    // const [ name, setName ] = useState('')
+    // const [ description, setDescription ] = useState('')
+    // const [ image, setImage ] = useState('')
+    // const [ rating, setRating ] = useState('')
+
+    const createCigar = async (cigarParams) => {
         try {
             const data = new FormData()
-            data.append('file', image)
+            data.append('file', context.image)
             data.append('upload_preset', 'cigar_app')
             const res = await axios.post('https://api.cloudinary.com/v1_1/dmsqthdn3/image/upload', data)
             console.log(res.data)
-            setImage(res.data.url)
+            context.setImage(res.data.url)
+            console.log(context.image)
 
-            const res2 = await axios.post(`http://localhost:8000/api/cigars`,{
-                        brand,
-                        name,
-                        description,
-                        img: res.data.url,
-                        rating
-                    })
-                    console.log(res2.data)
-                    setCigarList([ res2.data, ...cigarList ])
-                    setBrand('')
-                    setName('')
-                    setDescription('')
+            const res3 = await axios.post(`http://localhost:8000/api/cigars`,
+            {
+                brand: cigarParams.brand,
+                name: cigarParams.name,
+                description: cigarParams.description,
+                img: res.data.url,
+                rating: cigarParams.rating
+            }
+            )
+                    console.log(cigarParams)
+                    console.log(res3.data)
+                    setCigarList([ res3.data, ...cigarList ])
                     ref.current.value = null
-                    setRating('')
+                    
             } catch (error) {
                 console.log(error)
             }
@@ -50,19 +54,12 @@ const Main = () => {
             <NavBar setSearchTerm={setSearchTerm}/>
             <div style={{width:'75%', margin:'0 auto'}}>
                 <CigarForm 
-                cigarList={cigarList} 
-                setCigarList={setCigarList} 
-                name={name}
-                setName={setName}
-                brand={brand}
-                setBrand={setBrand}
-                description={description}
-                setDescription={setDescription}
-                image={ref}
-                setImage={setImage}
-                rating={rating}
-                setRating={setRating}
+                initialBrand=''
+                initialName=''
+                initialDescription=''
+                initialRating=''
                 onSubmitProp={createCigar}
+                image={ref}
                 />
 
                 <hr style={{margin:'0'}}/>
@@ -71,16 +68,6 @@ const Main = () => {
                 cigarList={cigarList} 
                 setCigarList={setCigarList}
                 searchTerm={searchTerm}
-                name={name}
-                setName={setName}
-                brand={brand}
-                setBrand={setBrand}
-                description={description}
-                setDescription={setDescription}
-                image={ref}
-                setImage={setImage}
-                rating={rating}
-                setRating={setRating}
                 />
             </div>
         </div>
