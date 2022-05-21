@@ -8,6 +8,7 @@ const CigarForm = (props) => {
     const { onSubmitProp, initialBrand, initialName, initialDescription, initialRating, image } = props
 
     const context = useContext(MyContext)
+   
     const [ brand, setBrand ] = useState(initialBrand)
     const [ name, setName ] = useState(initialName)
     const [ description, setDescription ] = useState(initialDescription)

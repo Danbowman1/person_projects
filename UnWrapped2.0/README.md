@@ -2,7 +2,7 @@
 
 ## A cigar review/journal web application
 
-### Users can input:
+### User can input:
 * Cigar Name
 * Brand
 * Description
@@ -11,9 +11,8 @@
 
 #### The review/log will then be output in a display all area
 
-### Users will then be able to:
-* Delete their own cigar
+### User will then be able to:
+* Delete cigar
 * Edit their cigar
-* View an individual cigar
-* Comment on an individual cigar
+
 

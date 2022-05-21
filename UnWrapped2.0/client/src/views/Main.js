@@ -10,7 +10,7 @@ const Main = () => {
 
     const [cigarList, setCigarList] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
-
+    
     const context = useContext(MyContext)
     const ref = useRef()
     // const [ brand, setBrand ] = useState('')
@@ -50,8 +50,10 @@ const Main = () => {
 
     return (
         
-        <div >
+        <div>
             <NavBar setSearchTerm={setSearchTerm}/>
+            
+
             <div style={{width:'75%', margin:'0 auto'}}>
                 <CigarForm 
                 initialBrand=''
