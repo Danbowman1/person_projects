@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import MyContext from '../context/MyContext'
 import styles from '../styles/CigarForm.module.css'
 import inputStyle from '../styles/InputStyles.module.css'
@@ -8,7 +8,7 @@ const CigarForm = (props) => {
     const { onSubmitProp, initialBrand, initialName, initialDescription, initialRating, image } = props
 
     const context = useContext(MyContext)
-   
+
     const [ brand, setBrand ] = useState(initialBrand)
     const [ name, setName ] = useState(initialName)
     const [ description, setDescription ] = useState(initialDescription)

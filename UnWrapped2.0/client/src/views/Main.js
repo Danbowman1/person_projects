@@ -13,12 +13,8 @@ const Main = () => {
     
     const context = useContext(MyContext)
     const ref = useRef()
-    // const [ brand, setBrand ] = useState('')
-    // const [ name, setName ] = useState('')
-    // const [ description, setDescription ] = useState('')
-    // const [ image, setImage ] = useState('')
-    // const [ rating, setRating ] = useState('')
-
+    
+    
     const createCigar = async (cigarParams) => {
         try {
             const data = new FormData()

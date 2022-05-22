@@ -52,6 +52,7 @@ const CigarCard = (props) => {
                 rating: updatedCigar.rating
             })
             console.log(res2.data)
+            window.location.reload()
             setOpenDialog(false)
             
         } catch (err) {
