@@ -26,7 +26,8 @@ const AllCigars = (props) => {
                 })
                 .map((cigar, index)=>(
                     <div key={index} className="singleCigar">
-                        
+                        <img src={cigar.image} alt="Cigar" className='cigarImg' />
+                    <div className="textArea">
                         <div className='cigarHeader' style={{display:'flex', justifyContent:'space-between'}}>
                         <div>
                         <Link to={`/cigar/${cigar._id}`} className="oneCigarLink">
@@ -35,20 +36,21 @@ const AllCigars = (props) => {
                         </Link>
                         </div>
                         </div>
-                            <img src={cigar.image} alt="Cigar" className='cigarImg' />
                             <div className="cigarReview">
                                 <p className='description'>{cigar.description}</p>
                                 <p>Rating: {cigar.rating}/5</p>
                             </div>
-                            <div className="singleCigarBottom">
-                                {cigar.createdBy?.username === user.username &&
-                                <div className='displayBtnContainer'>
-                                <button onClick={()=>removeFromDom(cigar._id)}>Delete Post</button>
-                                <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
-                                </div> 
-                                }
-                                <p className='profileLink'>Posted By:<Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link></p>
-                            </div>
+                        <div className="singleCigarBottom">
+                            {cigar.createdBy?.username === user.username &&
+                            <div className='displayBtnContainer'>
+                            <button onClick={()=>removeFromDom(cigar._id)}>Delete Post</button>
+                            <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
+                            </div> 
+                            }
+                            <p className='profileLink'>Posted By:<Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link></p>
+                        </div>
+                    </div>
+                        
                         
                     </div>
                 ))

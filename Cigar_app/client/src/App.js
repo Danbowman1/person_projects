@@ -8,7 +8,6 @@ import OneCigar from './views/OneCigar';
 import UserRegistration from './views/UserRegistration';
 import Profile from './components/Profile';
 import io from 'socket.io-client'
-import EditProfile from './components/EditProfile';
 
 function App() {
 
@@ -33,7 +32,6 @@ function App() {
         <Route path='/home' element={<Main/>} />
         <Route path='/cigar/edit/:id' element={<EditCigar/>} />
         <Route path='/cigar/:id' element={<OneCigar socket={socket}/>} />
-        <Route path='/user/edit/profile/:username' element={<EditProfile/>} />
         <Route path='/user/profile/:username' element={<Profile/>} />
       </Routes>
     </div>
