@@ -30,7 +30,7 @@ header {
 }
 
 .cigarSearch {
-  width: 10%;
+  width: 15%;
 }
 
 .cigarSearch input {
@@ -89,6 +89,7 @@ input[type="text"], input[type="password"] {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   font-size: 16px;
 }
+
 
 .description {
   display: flex;
