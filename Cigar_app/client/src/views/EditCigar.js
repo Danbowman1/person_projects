@@ -59,10 +59,10 @@ const EditCigar = () => {
         <hr />
         <div  className="singleCigar">
           <div className='cigarHeader'>
+                <img src={cigar.image} alt="Cigar" className='cigarImg' />
               <h2>{cigar.cigarName}</h2>
               <p>{cigar.brand}</p>
             </div>
-                <img src={cigar.image} alt="Cigar" className='cigarImg' />
               <div className="cigarReview">
                   <p>{cigar.description}</p>
                   <p>Rating: {cigar.rating}/5</p>

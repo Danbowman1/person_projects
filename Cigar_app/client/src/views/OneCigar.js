@@ -79,9 +79,9 @@ const OneCigar = (props) => {
         <Header />
             <div className="mainContainer">
                 <div className="displayOneCigar ">
+                    <img src={cigar.image} alt="Cigar" className='cigarImg' />
                     <h2 className='cigarHeader'>{cigar.cigarName}</h2>
                     <p>{cigar.brand}</p>
-                    <img src={cigar.image} alt="Cigar" className='cigarImg' />
                     <div className="cigarReview">
                     <p>{cigar.description}</p>
                     <p>Rating: {cigar.rating}/5</p>

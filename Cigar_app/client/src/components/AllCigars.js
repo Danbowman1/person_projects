@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 
@@ -25,17 +25,15 @@ const AllCigars = (props) => {
                     }
                 })
                 .map((cigar, index)=>(
-                    <div key={index} className="singleCigar">
+                <div key={index} className="singleCigar">
                         <img src={cigar.image} alt="Cigar" className='cigarImg' />
                     <div className="textArea">
-                        <div className='cigarHeader' style={{display:'flex', justifyContent:'space-between'}}>
-                        <div>
                         <Link to={`/cigar/${cigar._id}`} className="oneCigarLink">
-                            <h2>{cigar.brand}</h2>
-                            <p>{cigar.cigarName}</p>
+                            <h2 className='brand'>{cigar.brand}</h2>
+                            <p className='cigarName'>{cigar.cigarName}</p>
                         </Link>
-                        </div>
-                        </div>
+                        <hr />
+                        
                             <div className="cigarReview">
                                 <p className='description'>{cigar.description}</p>
                                 <p>Rating: {cigar.rating}/5</p>
@@ -47,12 +45,13 @@ const AllCigars = (props) => {
                             <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
                             </div> 
                             }
-                            <p className='profileLink'>Posted By:<Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link></p>
                         </div>
+                        <hr />
+                            <p className='profileLink'>Posted By:<Link to={`/user/profile/${cigar.createdBy?.username}`}>{cigar.createdBy?.username}</Link></p>
                     </div>
                         
                         
-                    </div>
+                </div>
                 ))
             }
         </div>

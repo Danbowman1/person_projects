@@ -64,14 +64,41 @@ const Profile = (props) => {
         <div className='profileContainer'>
             {
                 userCigarList.map((cigar, index)=>(
-                    
                     <div key={index} className="singleCigar">
+                        <img src={cigar.image} alt="Cigar" className='cigarImg' />
+                    <div className="textArea">
+                        
+                            <h2 className='brand'>{cigar.brand}</h2>
+                            <p className='cigarName'>{cigar.cigarName}</p>
+                        
+                        <hr />
+                        
+                            <div className="cigarReview">
+                                <p className='description'>{cigar.description}</p>
+                                <p>Rating: {cigar.rating}/5</p>
+                            </div>
+                            <hr />
+                        <div className="singleCigarBottom">
+                            {cigar.createdBy?.username === user.username &&
+                            <div className='displayBtnContainer'>
+                            <button onClick={()=>deleteCigar(cigar._id)}>Delete Post</button>
+                            <button onClick={()=>navigate(`/cigar/edit/${cigar._id}`)}>Edit Post</button>
+                            </div> 
+                            }
+                        </div>
+                            
+                    </div>
+                        
+                        
+                </div>
+                    
+                    /* <div key={index} className="singleCigar">
+                            <img src={cigar.image} alt="Cigar" className='cigarImg' />
                         <div className='cigarHeader'>
                         
                             <h2>{cigar.cigarName}</h2>
                             <p>{cigar.brand}</p>
                         </div>
-                            <img src={cigar.image} alt="Cigar" className='cigarImg' />
                             <div className="cigarReview">
                                 <p>{cigar.description}</p>
                                 <p>Rating: {cigar.rating}/5</p>
@@ -83,7 +110,7 @@ const Profile = (props) => {
                             </div>
                             }
                             
-                    </div>
+                    </div> */
                         
                     
                 ))
