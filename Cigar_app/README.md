@@ -8,5 +8,5 @@
 * Designed the wireframe and UI components with Figma to ensure a consistent UX.
 
 ![Navbar](https://res.cloudinary.com/dmsqthdn3/image/upload/c_scale,w_1000/v1657904435/Email%20Template/Nav_qcagoc.png)
-![Signin](https://res.cloudinary.com/dmsqthdn3/image/upload/c_scale,w_500/v1657904416/Email%20Template/Login_iwinfe.png) ![Journal](https://res.cloudinary.com/dmsqthdn3/image/upload/c_scale,w_500/v1657904435/Email%20Template/Journal_traoyb.png)
+![Signin](https://res.cloudinary.com/dmsqthdn3/image/upload/c_scale,w_500/v1657920709/Email%20Template/login_k66wxg.png) ![Journal](https://res.cloudinary.com/dmsqthdn3/image/upload/c_scale,w_500/v1657904435/Email%20Template/Journal_traoyb.png)
 ![editpage](https://res.cloudinary.com/dmsqthdn3/image/upload/c_scale,w_500/v1657904435/Email%20Template/Editpage_wnfbu4.png)
